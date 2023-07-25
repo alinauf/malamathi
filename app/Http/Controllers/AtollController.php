@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Atoll;
+use App\SL\AtollSL;
 use Illuminate\Http\Request;
 
 class AtollController extends Controller
 {
+
+    private AtollSL $atollSL;
+
+    public function __construct(AtollSL $atollSL)
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+        $this->atollSL = $atollSL;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('atoll.index');
     }
 
     /**
@@ -20,7 +30,9 @@ class AtollController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Atoll::class);
+
+        return view('atoll.create');
     }
 
     /**
@@ -28,7 +40,20 @@ class AtollController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Atoll::class);
+
+        $result = $this->atollSL->store($request->all());
+
+        $request->validate([
+            'name' => 'required',
+            'code' => 'required',
+        ]);
+
+        if ($result['status']) {
+            return redirect('atoll')->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', $result['payload']);
+        }
     }
 
     /**
@@ -36,7 +61,7 @@ class AtollController extends Controller
      */
     public function show(Atoll $atoll)
     {
-        //
+        return view('atoll.show', compact('atoll'));
     }
 
     /**
@@ -44,7 +69,8 @@ class AtollController extends Controller
      */
     public function edit(Atoll $atoll)
     {
-        //
+        $this->authorize('update', $atoll);
+        return view('atoll.edit', compact('atoll'));
     }
 
     /**
@@ -52,7 +78,16 @@ class AtollController extends Controller
      */
     public function update(Request $request, Atoll $atoll)
     {
-        //
+        $this->authorize('update', $atoll);
+
+        $result = $this->atollSL->update($atoll->id, $request->all());
+
+        if ($result['status']) {
+            return redirect('atoll')->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', $result['payload']);
+        }
+
     }
 
     /**
@@ -60,6 +95,13 @@ class AtollController extends Controller
      */
     public function destroy(Atoll $atoll)
     {
-        //
+        $this->authorize('delete', $atoll);
+        $result = $this->atollSL->destroy($atoll->id);
+
+        if ($result['status']) {
+            return redirect('atoll')->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', 'Something went wrong.');
+        }
     }
 }

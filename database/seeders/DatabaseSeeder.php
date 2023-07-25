@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory()->create([
             'name' => 'admin',
-            'email' => 'admin@malamathi.com',
+            'email' => 'admin@malamathi.org',
             'password' => bcrypt('Test@123'),
         ]);
 
