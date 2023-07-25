@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('atoll_id')->constrained();
             $table->integer('island_category_id');
             $table->string('name');
-            $table->string('code');
+            $table->string('code')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

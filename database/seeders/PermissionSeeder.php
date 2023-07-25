@@ -19,7 +19,7 @@ class PermissionSeeder extends Seeder
 
         $permissionsArray = [
             'view dashboard',
-            'creat atolls',
+            'create atolls',
             'edit atolls',
             'delete atolls',
             'creat island categories',

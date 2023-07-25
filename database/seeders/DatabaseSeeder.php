@@ -12,12 +12,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory()->create([
+        $user = \App\Models\User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@malamathi.org',
             'password' => bcrypt('Test@123'),
         ]);
 
+
         $this->call(PermissionSeeder::class);
+        $user->assignRole('admin');
+
+
     }
 }

@@ -10,4 +10,10 @@ class Atoll extends Model
 {
     use SoftDeletes;
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'code',
+        'is_city',
+    ];
 }
