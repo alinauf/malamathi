@@ -31,7 +31,7 @@ class IslandCategoryPolicy
 
     public function delete(User $user, IslandCategory $islandCategory)
     {
-        if ($user->can('delete island categories')) {
+        if ($user->can('delete islands categories')) {
             return true;
         }
     }

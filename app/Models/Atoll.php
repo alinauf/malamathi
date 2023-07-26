@@ -16,4 +16,10 @@ class Atoll extends Model
         'code',
         'is_city',
     ];
+
+    public function islands()
+    {
+        return $this->hasMany(Island::class);
+    }
+
 }

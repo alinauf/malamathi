@@ -14,4 +14,10 @@ class IslandCategory extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function islands()
+    {
+        return $this->hasMany(Island::class);
+    }
+
 }

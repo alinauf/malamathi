@@ -22,7 +22,7 @@ class PermissionSeeder extends Seeder
             'create atolls',
             'edit atolls',
             'delete atolls',
-            'creat island categories',
+            'create island categories',
             'edit island categories',
             'delete islands categories',
             'create islands',

@@ -17,4 +17,15 @@ class Island extends Model
         'name',
         'code',
     ];
+
+    public function islandCategory()
+    {
+        return $this->belongsTo(IslandCategory::class);
+    }
+
+    public function atoll()
+    {
+        return $this->belongsTo(Atoll::class);
+    }
+
 }
