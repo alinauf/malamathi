@@ -5,7 +5,7 @@ it('atoll page is displayed', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/atoll');
+        ->get('/atoll')->assertSee('List of all atolls');
 
     $response->assertOk();
 })->group('atoll');
@@ -23,7 +23,7 @@ it('non admin user cannot access atoll create page', function () {
 
 it('admin user can access atoll create page', function () {
     $response = adminLogin()
-        ->get('/atoll/create');
+        ->get('/atoll/create')->assertSee('Add new Atoll');
     expect($response->status())->toBe(200);
 })->group('atoll');
 

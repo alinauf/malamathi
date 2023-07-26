@@ -62,7 +62,7 @@ function seedPermissions()
             'create atolls',
             'edit atolls',
             'delete atolls',
-            'creat island categories',
+            'create island categories',
             'edit island categories',
             'delete islands categories',
             'create islands',
@@ -71,6 +71,7 @@ function seedPermissions()
             'create population entry',
             'edit population entry',
             'delete population entry',
+
         ];
 
         foreach ($permissionsArray as $permission) {

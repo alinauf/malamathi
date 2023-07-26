@@ -5,7 +5,7 @@ it('island category page is displayed', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/island-category');
+        ->get('/island-category')->assertSee('List of all island categories');
 
     $response->assertOk();
 })->group('island-category');
@@ -23,11 +23,11 @@ it('non admin user cannot access island category create page', function () {
 
 it('admin user can access island category create page', function () {
     $response = adminLogin()
-        ->get('/island/create');
+        ->get('/island-category/create')->assertSee('Add new Island Category');
     expect($response->status())->toBe(200);
 })->group('island-category');
 
-it('can create an island', function () {
+it('can create an island category', function () {
 
 
     $islandCategorySL = new \App\SL\IslandCategorySL();

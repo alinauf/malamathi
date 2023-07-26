@@ -5,7 +5,7 @@ it('island page is displayed', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/island');
+        ->get('/island')->assertSee('List of all islands');
 
     $response->assertOk();
 })->group('island');
@@ -23,7 +23,7 @@ it('non admin user cannot access island create page', function () {
 
 it('admin user can access island create page', function () {
     $response = adminLogin()
-        ->get('/island/create');
+        ->get('/island/create')->assertSee('Add new Island');
     expect($response->status())->toBe(200);
 })->group('island');
 
