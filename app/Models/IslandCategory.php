@@ -10,4 +10,8 @@ class IslandCategory extends Model
 {
     use SoftDeletes;
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+    ];
 }

@@ -10,4 +10,11 @@ class Island extends Model
 {
     use SoftDeletes;
     use HasFactory;
+
+    protected $fillable = [
+        'atoll_id',
+        'island_category_id',
+        'name',
+        'code',
+    ];
 }
