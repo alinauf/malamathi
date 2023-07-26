@@ -11,10 +11,14 @@
 |
 */
 
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 uses(
     Tests\TestCase::class,
-    // Illuminate\Foundation\Testing\RefreshDatabase::class,
+    Illuminate\Foundation\Testing\RefreshDatabase::class,
 )->in('Feature');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +49,59 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+function seedPermissions()
+{
+    {
+        // Reset cached roles and permissions
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
+        $permissionsArray = [
+            'view dashboard',
+            'create atolls',
+            'edit atolls',
+            'delete atolls',
+            'creat island categories',
+            'edit island categories',
+            'delete islands categories',
+            'create islands',
+            'edit islands',
+            'delete islands',
+            'create population entry',
+            'edit population entry',
+            'delete population entry',
+        ];
+
+        foreach ($permissionsArray as $permission) {
+            Permission::create(['name' => $permission]);
+        }
+
+        $role = Role::create(['name' => 'admin']);
+        $role->givePermissionTo(Permission::all());
+
+        $role = Role::create(['name' => 'super-admin']);
+        $role->givePermissionTo(Permission::all());
+    }
+}
+
+function adminLogin()
+{
+    seedPermissions();
+    $user = \App\Models\User::factory(
+        [
+            'name' => 'Admin',
+            'email' => 'admin@malamathi.org',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+        ]
+    )->create();
+
+    $user->assignRole('admin');
+
+    return test()->actingAs($user);
+}
+
+function createAtoll(){
+    $atoll = \App\Models\Atoll::factory()->create();
+    return $atoll;
 }
