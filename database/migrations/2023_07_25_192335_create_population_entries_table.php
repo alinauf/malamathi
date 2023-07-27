@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->unsignedInteger('local_count');
             $table->unsignedInteger('expat_count');
             $table->unsignedInteger('total_population');
+            $table->date('logged_date');
             $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();

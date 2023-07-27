@@ -19,6 +19,7 @@ class PopulationEntry extends Model
         'local_count',
         'expat_count',
         'total_population',
+        'logged_date',
         'description',
     ];
 
@@ -29,6 +30,6 @@ class PopulationEntry extends Model
 
     public function atoll()
     {
-        $this->belongsTo(Atoll::class);
+        return $this->belongsTo(Atoll::class);
     }
 }

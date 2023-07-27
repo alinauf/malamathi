@@ -107,6 +107,19 @@ function createAtoll()
     return \App\Models\Atoll::factory()->create();
 }
 
+function createIsland()
+{
+    $atoll = createAtoll();
+    $islandCategory = createIslandCategory();
+    return \App\Models\Island::factory()->create(
+        [
+            'atoll_id' => $atoll->id,
+            'island_category_id' => $islandCategory->id,
+        ]
+    );
+}
+
+
 function createIslandCategory()
 {
     return \App\Models\IslandCategory::factory()->create();

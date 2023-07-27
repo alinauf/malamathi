@@ -24,6 +24,10 @@
                         {{ __('Islands') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('population-entry.index')" :active="request()->routeIs('population-entry.index')">
+                        {{ __('Population Entries') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -78,6 +82,18 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('atoll.index')" :active="request()->routeIs('atoll.index')">
+                {{ __('Atolls') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('island.index')" :active="request()->routeIs('island.index')">
+                {{ __('Islands') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('population-entry.index')" :active="request()->routeIs('population-entry.index')">
+                {{ __('Population Entries') }}
             </x-responsive-nav-link>
         </div>
 

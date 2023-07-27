@@ -17,6 +17,9 @@ class IslandSL extends SL
     {
         return Island::where('name', 'like', '%' . $search . '%')
             ->orWhere('code', 'like', '%' . $search . '%')
+            ->orWhereHas('atoll', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%");
+            })
             ->orderBy('id', 'desc')
             ->paginate($paginateCount);
     }

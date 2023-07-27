@@ -52,6 +52,7 @@ class PopulationEntryController extends Controller
             'local_count' => 'required',
             'expat_count' => 'required',
             'total_population' => 'required',
+            'logged_date' => 'required',
         ]);
 
         if ($result['status']) {

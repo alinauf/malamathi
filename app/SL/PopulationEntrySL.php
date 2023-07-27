@@ -3,6 +3,7 @@
 namespace App\SL;
 
 use App\Models\PopulationEntry;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class PopulationEntrySL extends SL
@@ -14,8 +15,14 @@ class PopulationEntrySL extends SL
 
     public function index($search, $paginateCount = 10)
     {
-        return PopulationEntry::where('name', 'like', '%' . $search . '%')
-            ->orWhere('code', 'like', '%' . $search . '%')
+        return PopulationEntry::where('men_count', 'like', '%' . $search . '%')
+            ->orWhere('women_count', 'like', '%' . $search . '%')
+            ->orWhereHas('atoll', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('island', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%");
+            })
             ->orderBy('id', 'desc')
             ->paginate($paginateCount);
     }
@@ -32,7 +39,8 @@ class PopulationEntrySL extends SL
                 'women_count' => $data['women_count'],
                 'local_count' => $data['local_count'],
                 'expat_count' => $data['expat_count'],
-                'total_population' => $data['total_population'],
+                'total_population' => $data['women_count'] + $data['men_count'],
+                'logged_date' => Carbon::parse($data['logged_date']),
                 'description' => $data['description'] ?? null,
             ]);
 
@@ -74,7 +82,8 @@ class PopulationEntrySL extends SL
             $populationEntry->women_count = $data['women_count'] ?? $populationEntry->women_count;
             $populationEntry->local_count = $data['local_count'] ?? $populationEntry->local_count;
             $populationEntry->expat_count = $data['expat_count'] ?? $populationEntry->expat_count;
-            $populationEntry->total_population = $data['total_population'] ?? $populationEntry->total_population;
+            $populationEntry->total_population = $populationEntry->men_count + $populationEntry->women_count;
+            $populationEntry->logged_date = $data['logged_date'] ? Carbon::parse($data['logged_date']) : $populationEntry->logged_date;
             $populationEntry->description = $data['description'] ?? $populationEntry->description;
             $populationEntrySave = $populationEntry->save();
 

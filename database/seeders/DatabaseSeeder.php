@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\Atoll;
 use App\Models\Island;
 use App\Models\IslandCategory;
+use App\Models\PopulationEntry;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
 
         Island::factory()->count(100)->create();
 
+        PopulationEntry::factory()->count(10)->create();
 
 
     }
