@@ -52,12 +52,10 @@ it('can update an island', function () {
     $islandCategory = createIslandCategory();
 
 
-    $island = new \App\Models\IslandCategory();
-    $island->name = 'Resort';
-    $island->save();
+    $island = \App\Models\IslandCategory::factory()->create();
 
     $this->assertDatabaseHas('island_categories', [
-        'name' => 'Resort',
+        'name' => $island->name,
     ]);
 
     $islandCategorySL = new \App\SL\IslandCategorySL();

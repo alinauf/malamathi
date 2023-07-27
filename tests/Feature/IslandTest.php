@@ -59,19 +59,19 @@ it('can update an island', function () {
     $atoll = createAtoll();
     $islandCategory = createIslandCategory();
 
+    $island = \App\Models\Island::factory()->create(
+        [
+            'atoll_id' => $atoll->id,
+            'island_category_id' => $islandCategory->id,
+        ]
+    );
 
-    $island = new \App\Models\Island();
-    $island->atoll_id = $atoll->id;
-    $island->island_category_id = $islandCategory->id;
-    $island->code = 'S';
-    $island->name = 'Hulhudhoo';
-    $island->save();
 
     $this->assertDatabaseHas('islands', [
-        'atoll_id' => $atoll->id,
-        'island_category_id' => $islandCategory->id,
-        'code' => 'S',
-        'name' => 'Hulhudhoo',
+        'atoll_id' => $island->atoll_id,
+        'island_category_id' => $island->island_category_id,
+        'code' => $island->code,
+        'name' => $island->name,
     ]);
 
     $islandSL = new \App\SL\IslandSL();

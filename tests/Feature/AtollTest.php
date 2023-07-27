@@ -51,16 +51,12 @@ it('can create an atoll', function () {
 
 it('can update an atoll', function () {
 
-    $atoll = new \App\Models\Atoll();
-    $atoll->code = 'S';
-    $atoll->name = 'Addu';
-    $atoll->is_city = false;
-    $atoll->save();
+    $atoll = \App\Models\Atoll::factory()->create();
 
     $this->assertDatabaseHas('atolls', [
-        'code' => 'S',
-        'name' => 'Addu',
-        'is_city' => false,
+        'code' => $atoll->code,
+        'name' => $atoll->name,
+        'is_city' => $atoll->is_city,
     ]);
 
     $atollSL = new \App\SL\AtollSL();

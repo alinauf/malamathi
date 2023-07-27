@@ -104,20 +104,10 @@ function adminLogin()
 
 function createAtoll()
 {
-    $atoll = new \App\Models\Atoll();
-    $atoll->name = 'Test Atoll';
-    $atoll->code = 'TA';
-    $atoll->is_city = false;
-    $atoll->save();
-
-    return $atoll;
+    return \App\Models\Atoll::factory()->create();
 }
 
 function createIslandCategory()
 {
-    $islandCategory = new \App\Models\IslandCategory();
-    $islandCategory->name = 'Test Category';
-    $islandCategory->save();
-
-    return $islandCategory;
+    return \App\Models\IslandCategory::factory()->create();
 }
