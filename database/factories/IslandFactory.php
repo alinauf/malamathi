@@ -20,8 +20,9 @@ class IslandFactory extends Factory
     public function definition(): array
     {
         return [
+            'atoll_id' => \App\Models\Atoll::all()->random()->id,
             'island_category_id' => IslandCategory::all()->random()->id,
-            'code' => $this->faker->unique()->randomLetter . $this->faker->unique()->randomLetter,
+            'code' => $this->faker->uuid,
             'name' => $this->faker->unique()->city,
         ];
     }

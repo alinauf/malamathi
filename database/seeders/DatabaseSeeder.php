@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Atoll;
+use App\Models\Island;
+use App\Models\IslandCategory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +24,16 @@ class DatabaseSeeder extends Seeder
 
         $this->call(PermissionSeeder::class);
         $user->assignRole('admin');
+
+
+        // TODO: remove below code after proper data is seeded
+
+        Atoll::factory()->count(10)->create();
+
+        IslandCategory::factory()->count(10)->create();
+
+        Island::factory()->count(100)->create();
+
 
 
     }
