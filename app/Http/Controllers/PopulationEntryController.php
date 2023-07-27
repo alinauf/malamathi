@@ -42,8 +42,6 @@ class PopulationEntryController extends Controller
     {
         $this->authorize('create', PopulationEntry::class);
 
-        $result = $this->populationEntrySL->store($request->all());
-
         $request->validate([
             'atoll_id' => 'required',
             'island_id' => 'required',
@@ -51,9 +49,11 @@ class PopulationEntryController extends Controller
             'women_count' => 'required',
             'local_count' => 'required',
             'expat_count' => 'required',
-            'total_population' => 'required',
             'logged_date' => 'required',
         ]);
+
+
+        $result = $this->populationEntrySL->store($request->all());
 
         if ($result['status']) {
             return redirect('population-entry')->with('success', $result['payload']);

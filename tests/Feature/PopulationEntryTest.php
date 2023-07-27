@@ -23,7 +23,7 @@ it('non admin user cannot access population entry create page', function () {
 
 it('admin user can access population entry create page', function () {
     $response = adminLogin()
-        ->get('/population-entry/create')->assertSee('Add new population entry');
+        ->get('/population-entry/create')->assertSee('Add new Population entry');
     expect($response->status())->toBe(200);
 })->group('population-entry');
 
