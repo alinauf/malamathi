@@ -1,6 +1,6 @@
 ## Malamathi
 
-- php version 8.1
+- php version 8.2
 - laravel framework version 10
 
 ```bash
