@@ -2,6 +2,7 @@
 
 namespace App\SL;
 
+use App\Models\Island;
 use App\Models\IslandCategory;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,14 @@ class IslandCategorySL extends SL
     public function index($search, $paginateCount = 10)
     {
         return IslandCategory::where('name', 'like', '%' . $search . '%')
+            ->orderBy('id', 'desc')
+            ->paginate($paginateCount);
+    }
+
+    public function islands($islandCategoryId, $search, $paginateCount = 10)
+    {
+        return Island::where('island_category_id', $islandCategoryId)->
+        where('name', 'like', '%' . $search . '%')
             ->orderBy('id', 'desc')
             ->paginate($paginateCount);
     }

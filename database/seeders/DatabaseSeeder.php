@@ -26,12 +26,26 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
         $user->assignRole('admin');
 
+        $islandCategories = [
+            'Inhabited',
+            'Uninhabited',
+            'Resort',
+            'Varuvaa',
+            'Government',
+            'Other',
+        ];
+
+        foreach ($islandCategories as $islandCategory) {
+            IslandCategory::create([
+                'name' => $islandCategory,
+            ]);
+        }
+
+
 
         // TODO: remove below code after proper data is seeded
 
         Atoll::factory()->count(10)->create();
-
-        IslandCategory::factory()->count(10)->create();
 
         Island::factory()->count(100)->create();
 

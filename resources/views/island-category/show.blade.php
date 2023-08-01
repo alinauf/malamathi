@@ -5,7 +5,12 @@
                 @include('island-category.partials.island-category-information')
             </div>
         </div>
+
+        <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <livewire:island-category.islands :island-category="$islandCategory"/>
+        </div>
     </div>
+
 
     <x-flash-message></x-flash-message>
 </x-app-layout>
