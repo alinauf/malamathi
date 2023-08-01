@@ -65,10 +65,20 @@
 
                                 <tr>
                                     <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 text-ellipsis overflow-hidden">
-                                        {{$populationEntry->atoll->name}}
+                                        <a
+                                            href="{{url("atoll/".$populationEntry["atoll_id"])}}">
+                                            {{$populationEntry->atoll->name}}
+                                        </a>
                                     </td>
+
+
                                     <td class=" px-3 py-4 text-sm text-gray-500 text-ellipsis overflow-hidden">
-                                        {{$populationEntry->island->name}}
+
+                                        <a
+                                                href="{{url("island/".$populationEntry["island_id"])}}">
+                                            {{$populationEntry->island->name}}
+                                        </a>
+
                                     </td>
 
                                     <td class=" px-3 py-4 text-sm text-gray-500 text-ellipsis overflow-hidden">

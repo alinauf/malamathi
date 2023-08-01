@@ -63,7 +63,39 @@ class IslandController extends Controller
      */
     public function show(Island $island)
     {
-        return view('island.show', compact('island'));
+        $populationEntries = $island->populationEntries->sortBy('logged_date');
+
+        $lastPopulationEntry = $populationEntries->last();
+
+
+        $maleData = [];
+        $femaleData = [];
+        $localsData = [];
+        $expatsData = [];
+
+        $labels = [];
+
+        foreach ($populationEntries as $populationEntry) {
+            $date = $populationEntry->logged_date;
+
+            $maleData[] = $populationEntry->men_count;
+            $femaleData[] = $populationEntry->women_count;
+            $localsData[] = $populationEntry->local_count;
+            $expatsData[] = $populationEntry->expat_count;
+            $labels[] = $date;
+        }
+
+        $populationCounts = [
+            'labels' => $labels,
+            'maleData' => $maleData,
+            'femaleData' => $femaleData,
+            'localsData' => $localsData,
+            'expatsData' => $expatsData,
+        ];
+
+        return view('island.show', compact('island', 'populationCounts', 'lastPopulationEntry'));
+
+
     }
 
     /**

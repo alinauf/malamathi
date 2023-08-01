@@ -28,4 +28,9 @@ class Island extends Model
         return $this->belongsTo(Atoll::class);
     }
 
+    public function populationEntries()
+    {
+        return $this->hasMany(PopulationEntry::class);
+    }
+
 }

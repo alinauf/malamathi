@@ -4,6 +4,10 @@
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 @include('atoll.partials.atoll-information')
             </div>
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                @include('components.population-entries')
+            </div>
         </div>
     </div>
 

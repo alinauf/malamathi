@@ -23,4 +23,9 @@ class Atoll extends Model
         return $this->hasMany(Island::class);
     }
 
+    public function populationEntries()
+    {
+        return $this->hasMany(PopulationEntry::class);
+    }
+
 }
