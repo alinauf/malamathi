@@ -28,6 +28,10 @@
                         {{ __('Population Entries') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('zone.index')" :active="request()->routeIs('zone.index')">
+                        {{ __('Zones') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -94,6 +98,11 @@
 
             <x-responsive-nav-link :href="route('population-entry.index')" :active="request()->routeIs('population-entry.index')">
                 {{ __('Population Entries') }}
+            </x-responsive-nav-link>
+
+
+            <x-responsive-nav-link :href="route('zone.index')" :active="request()->routeIs('zone.index')">
+                {{ __('Zones') }}
             </x-responsive-nav-link>
         </div>
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\AtollController;
 use App\Http\Controllers\IslandController;
 use App\Http\Controllers\IslandCategoryController;
 use App\Http\Controllers\PopulationEntryController;
+use \App\Http\Controllers\ZoneController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('island', IslandController::class);
     Route::resource('island-category', IslandCategoryController::class);
     Route::resource('population-entry', PopulationEntryController::class);
+
+    Route::resource('zone', ZoneController::class);
+
 });
 
 require __DIR__.'/auth.php';
