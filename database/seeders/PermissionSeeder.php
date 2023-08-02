@@ -31,6 +31,16 @@ class PermissionSeeder extends Seeder
             'create population entry',
             'edit population entry',
             'delete population entry',
+
+            'create zones',
+            'edit zones',
+            'delete zones',
+            'create plots',
+            'edit plots',
+            'delete plots',
+            'create plot usages',
+            'edit plot usages',
+            'delete plot usages',
         ];
 
         foreach ($permissionsArray as $permission) {

@@ -22,15 +22,17 @@ class PopulationEntryFactory extends Factory
         $men_count = $this->faker->numberBetween(1000, 5000);
         $women_count = $this->faker->numberBetween(1000, 5000);
         $total_population = $men_count + $women_count;
-        $expat_count =  $this->faker->numberBetween(500, 999);
+        $expat_count = $this->faker->numberBetween(500, 999);
         $local_count = $total_population - $expat_count;
 
         $logged_date = $this->faker->dateTimeBetween('-1 years', 'now');
 
+        $atollId = \App\Models\Atoll::all()->random()->id;
+        $islandId = \App\Models\Island::where('atoll_id', $atollId)->get()->random()->id;
 
         return [
-            'atoll_id' => Atoll::all()->random()->id,
-            'island_id' => Island::all()->random()->id,
+            'atoll_id' => $atollId,
+            'island_id' => $islandId,
             'men_count' => $men_count,
             'women_count' => $women_count,
             'local_count' => $local_count,
