@@ -17,7 +17,7 @@ use Spatie\Permission\Models\Role;
 uses(
     Tests\TestCase::class,
     Illuminate\Foundation\Testing\RefreshDatabase::class,
-)->in('Feature','Unit');
+)->in('Feature', 'Unit');
 
 
 /*
@@ -125,6 +125,18 @@ function createIsland()
         [
             'atoll_id' => $atoll->id,
             'island_category_id' => $islandCategory->id,
+        ]
+    );
+}
+
+function createZone()
+{
+
+    $island = createIsland();
+    return \App\Models\Zone::factory()->create(
+        [
+            'atoll_id' => $island->atoll_id,
+            'island_id' => $island->id,
         ]
     );
 }

@@ -32,6 +32,10 @@
                         {{ __('Zones') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('plot.index')" :active="request()->routeIs('plot.index')">
+                        {{ __('Plots') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -103,6 +107,10 @@
 
             <x-responsive-nav-link :href="route('zone.index')" :active="request()->routeIs('zone.index')">
                 {{ __('Zones') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('plot.index')" :active="request()->routeIs('plot.index')">
+                {{ __('Plots') }}
             </x-responsive-nav-link>
         </div>
 
