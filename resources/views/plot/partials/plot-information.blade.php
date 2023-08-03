@@ -71,6 +71,104 @@
                 </dd>
             </div>
 
+            <div class="sm:col-span-2">
+                <dt class="text-sm font-medium text-gray-500">
+                    Plot Details
+                </dt>
+                <ul role="list" class="divide-y divide-gray-100">
+                    @if($plot->plotUsages->count() == 0)
+                        <dd class="mt-1 text-sm text-gray-900">
+                            No plot usage record found.
+                        </dd>
+                    @endif
+
+
+                    <?php
+                    $latestPlotOwnerByDate = $plot->plotUsages->sortByDesc('created_at')->first();
+                    ?>
+                    @foreach($plot->plotUsages as $plotUsage)
+                        @if($plotUsage->id === $latestPlotOwnerByDate->id)
+                            <li class="flex items-center justify-between gap-x-6 py-5">
+                                <div class="min-w-0">
+                                    <div class="flex items-start gap-x-3">
+                                        <p class="text-sm font-semibold leading-6 text-gray-900">{{$latestPlotOwnerByDate->owner_name}}</p>
+
+                                        <p class="rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset text-gray-600 bg-gray-50 ring-gray-500/10">
+                                            Current Owner</p>
+
+                                    </div>
+                                    <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+                                        <p class="truncate">Purpose: {{$latestPlotOwnerByDate->purpose}}</p>
+
+                                        <svg viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
+                                            <circle cx="1" cy="1" r="1"/>
+                                        </svg>
+                                        <p class="whitespace-nowrap">
+                                            Since
+                                            <time datetime="{{$latestPlotOwnerByDate->created_at}}">{{$latestPlotOwnerByDate->created_at->format('d-m-Y H:i:s')}}</time>
+                                        </p>
+
+                                    </div>
+                                    @if(isset($latestPlotOwnerByDate->description))
+                                        <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+                                            <p class="">Details: {{$latestPlotOwnerByDate->description}}</p>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="flex flex-none items-center gap-x-4">
+                                    <form action="{{ url("/plot/usage/$plotUsage->id") }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button
+                                                type="submit"
+                                                class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </li>
+                        @else
+                            <li class="flex items-center justify-between gap-x-6 py-5">
+                                <div class="min-w-0">
+                                    <div class="flex items-start gap-x-3">
+                                        <p class="text-sm font-semibold leading-6 text-gray-900">{{$plotUsage->owner_name}}</p>
+
+                                    </div>
+                                    <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+                                        <p class="truncate">Purpose: {{$plotUsage->purpose}}</p>
+
+                                        <svg viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
+                                            <circle cx="1" cy="1" r="1"/>
+                                        </svg>
+                                        <p class="whitespace-nowrap">Since
+                                            <time datetime="{{$plotUsage->created_at}}">{{$plotUsage->created_at->format('d-m-Y H:i:s')}}</time>
+                                        </p>
+
+                                    </div>
+                                    @if(isset($plotUsage->description))
+                                        <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+                                            <p class="">Details: {{$plotUsage->description}}</p>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="flex flex-none items-center gap-x-4">
+                                    <form action="{{ url("/plot/usage/$plotUsage->id") }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button
+                                                type="submit"
+                                                class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </li>
+                        @endif
+
+                    @endforeach
+                </ul>
+            </div>
+
         </dl>
     </div>
 

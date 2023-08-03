@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\PlotUsage;
+
 it('plot page is displayed', function () {
     $user = \App\Models\User::factory()->create();
 
@@ -93,4 +95,29 @@ it('can update an plot', function () {
 
 })->group('plot');
 
+
+it('can have many plots', function () {
+    $zone = createZone();
+
+    $plot = \App\Models\Plot::factory()->create(
+        [
+            'zone_id' => $zone->id,
+        ]
+    );
+    expect($plot->plotUsages->count())->toBe(0);
+
+    PlotUsage::factory()->count(5)->create(
+        [
+            'plot_id' => $plot->id,
+        ]
+    );
+
+    $plot->refresh();
+    expect($plot->plotUsages->count())->toBe(5);
+
+    $response = adminLogin()
+        ->get('/plot/' . $plot->id)->assertSee($plot->plotUsages[0]->owner_name);
+    expect($response->status())->toBe(200);
+
+})->group('plot');
 

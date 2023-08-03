@@ -43,6 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('zone', ZoneController::class);
     Route::resource('plot', PlotController::class);
 
+    Route::delete('/plot/usage/{plotUsage}', [PlotController::class, 'destroyPlotUsage'])->name('plot.usage.destroy');
+
+
 });
 
 require __DIR__.'/auth.php';

@@ -66,26 +66,27 @@ formValidationStatus:@entangle('formValidationStatus'),
                     @enderror
                 </div>
 
-                <div class="sm:col-span-3">
+                {{-- Description--}}
+                <div class="sm:col-span-6">
                     <label for="description" class="block text-sm font-medium text-gray-700"
                     >
                         Description
                     </label>
                     <div class="mt-1">
-                        <input type="text" name="description"
-                               wire:model="description"
-                               id="description"
-                               class="
+                         <textarea name="description"
+                                   wire:model="description"
+                                   id="description" cols="5" rows="3" class="
                             @error('description') border border-red-500 @enderror
-                                   shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
-                                   border-gray-300 rounded-md">
+                        shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
+                        border-gray-300 rounded-md">
+                </textarea>
+
                     </div>
 
                     @error('description')
                     <p class="mt-2 text-sm text-red-600">{{$message}}</p>
                     @enderror
                 </div>
-
 
             </div>
         </div>

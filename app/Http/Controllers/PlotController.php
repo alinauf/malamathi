@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plot;
+use App\Models\PlotUsage;
 use App\SL\PlotSL;
+use App\SL\PlotUsageSL;
 use Illuminate\Http\Request;
 
 class PlotController extends Controller
@@ -100,6 +102,20 @@ class PlotController extends Controller
 
         if ($result['status']) {
             return redirect('plot')->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', 'Something went wrong.');
+        }
+    }
+
+    public function destroyPlotUsage(PlotUsage $plotUsage)
+    {
+        $plotId = $plotUsage->plot_id;
+        $this->authorize('delete', $plotUsage);
+        $plotUsageSL = new PlotUsageSL();
+        $result = $plotUsageSL->destroy($plotUsage->id);
+
+        if ($result['status']) {
+            return redirect('plot/'.$plotId)->with('success', $result['payload']);
         } else {
             return redirect()->back()->with('errors', 'Something went wrong.');
         }

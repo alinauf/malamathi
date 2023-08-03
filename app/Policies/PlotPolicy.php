@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Plot;
+use App\Models\PlotUsage;
 use App\Models\User;
 
 class PlotPolicy
@@ -35,5 +36,7 @@ class PlotPolicy
             return true;
         }
     }
+
+
 
 }
