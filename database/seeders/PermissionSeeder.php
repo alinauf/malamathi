@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class PermissionSeeder extends Seeder
 {
@@ -15,9 +16,24 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         // Reset cached roles and permissions
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $permissionsArray = [
+        $permissionsArray = $this->permissions();
+
+        foreach ($permissionsArray as $permission) {
+            Permission::create(['name' => $permission]);
+        }
+
+        $role = Role::create(['name' => 'admin']);
+        $role->givePermissionTo(Permission::all());
+
+        $role = Role::create(['name' => 'super-admin']);
+        $role->givePermissionTo(Permission::all());
+    }
+
+    public function permissions()
+    {
+        return [
             'view dashboard',
             'create atolls',
             'edit atolls',
@@ -41,16 +57,15 @@ class PermissionSeeder extends Seeder
             'create plot usages',
             'edit plot usages',
             'delete plot usages',
+
+
+            'create ecosystems',
+            'edit ecosystems',
+            'delete ecosystems',
+
+            'create cases',
+            'edit cases',
+            'delete cases',
         ];
-
-        foreach ($permissionsArray as $permission) {
-            Permission::create(['name' => $permission]);
-        }
-
-        $role = Role::create(['name' => 'admin']);
-        $role->givePermissionTo(Permission::all());
-
-        $role = Role::create(['name' => 'super-admin']);
-        $role->givePermissionTo(Permission::all());
     }
 }

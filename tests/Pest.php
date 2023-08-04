@@ -53,47 +53,8 @@ function something()
 
 function seedPermissions()
 {
-    {
-        // Reset cached roles and permissions
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-
-        $permissionsArray = [
-            'view dashboard',
-            'create atolls',
-            'edit atolls',
-            'delete atolls',
-            'create island categories',
-            'edit island categories',
-            'delete islands categories',
-            'create islands',
-            'edit islands',
-            'delete islands',
-            'create population entry',
-            'edit population entry',
-            'delete population entry',
-
-            'create zones',
-            'edit zones',
-            'delete zones',
-            'create plots',
-            'edit plots',
-            'delete plots',
-            'create plot usages',
-            'edit plot usages',
-            'delete plot usages',
-
-        ];
-
-        foreach ($permissionsArray as $permission) {
-            Permission::create(['name' => $permission]);
-        }
-
-        $role = Role::create(['name' => 'admin']);
-        $role->givePermissionTo(Permission::all());
-
-        $role = Role::create(['name' => 'super-admin']);
-        $role->givePermissionTo(Permission::all());
-    }
+    $permissionSeeder = new \Database\Seeders\PermissionSeeder();
+    $permissionSeeder->run();
 }
 
 function adminLogin()
