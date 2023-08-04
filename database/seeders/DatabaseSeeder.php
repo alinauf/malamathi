@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Atoll;
+use App\Models\Ecosystem;
 use App\Models\Island;
 use App\Models\IslandCategory;
 use App\Models\Plot;
@@ -49,10 +50,12 @@ class DatabaseSeeder extends Seeder
 
         Atoll::factory()->count(10)->create();
         Island::factory()->count(100)->create();
-        PopulationEntry::factory()->count(10)->create();
+        PopulationEntry::factory()->count(1000)->create();
         Zone::factory()->count(10)->create();
         Plot::factory()->count(30)->create();
         PlotUsage::factory()->count(100)->create();
+
+        Ecosystem::factory()->count(10)->create();
 
 
     }
