@@ -29,7 +29,7 @@ class AtollSL extends SL
             $atoll = Atoll::firstOrCreate([
                 'code' => $data['code'],
                 'name' => $data['name'],
-                'is_city' => isset($data['is_city']) ? true : false,
+                'is_city' => $data['is_city'] ?? false,
             ]);
 
 
@@ -66,7 +66,7 @@ class AtollSL extends SL
 
             $name = $data['name'] ?? $atoll->name;
             $code = $data['code'] ?? $atoll->code;
-            $isCity = isset($data['is_city']) ? true : false;
+            $isCity = $data['is_city'] ?? false;
 
             $atoll->name = $name;
             $atoll->code = $code;

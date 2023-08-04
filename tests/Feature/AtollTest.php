@@ -29,11 +29,13 @@ it('admin user can access atoll create page', function () {
 
 it('can create an atoll', function () {
 
+    $isCity = fake()->boolean;
+
     $atollSL = new \App\SL\AtollSL();
     $data = [
         'code' => 'S',
         'name' => 'Addu',
-        'is_city' => true,
+        'is_city' => $isCity,
     ];
 
     $response = $atollSL->store($data);
@@ -44,10 +46,11 @@ it('can create an atoll', function () {
     $this->assertDatabaseHas('atolls', [
         'code' => 'S',
         'name' => 'Addu',
-        'is_city' => true,
+        'is_city' => $isCity,
     ]);
 
 })->group('atoll');
+
 
 it('can update an atoll', function () {
 
@@ -60,10 +63,13 @@ it('can update an atoll', function () {
     ]);
 
     $atollSL = new \App\SL\AtollSL();
+
+    $isCity = fake()->boolean;
+
     $data = [
         'code' => 'S.',
         'name' => 'Addu Atoll',
-        'is_city' => true,
+        'is_city' => $isCity,
     ];
 
     $response = $atollSL->update($atoll->id, $data);
@@ -74,7 +80,7 @@ it('can update an atoll', function () {
     $this->assertDatabaseHas('atolls', [
         'code' => 'S.',
         'name' => 'Addu Atoll',
-        'is_city' => true,
+        'is_city' => $isCity,
     ]);
 
 })->group('atoll');
