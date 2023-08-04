@@ -33,4 +33,16 @@ class Island extends Model
         return $this->hasMany(PopulationEntry::class);
     }
 
+    public function zones()
+    {
+        return $this->hasMany(Zone::class);
+    }
+
+    public function ecosystems()
+    {
+        return $this->hasMany(Ecosystem::class);
+    }
+
+
+
 }

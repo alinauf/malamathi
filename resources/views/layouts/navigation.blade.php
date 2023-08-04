@@ -36,6 +36,11 @@
                         {{ __('Plots') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('ecosystem.index')" :active="request()->routeIs('ecosystem.index')">
+                        {{ __('Ecosystems') }}
+                    </x-nav-link>
+
+
                 </div>
             </div>
 
@@ -111,6 +116,10 @@
 
             <x-responsive-nav-link :href="route('plot.index')" :active="request()->routeIs('plot.index')">
                 {{ __('Plots') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('ecosystem.index')" :active="request()->routeIs('ecosystem.index')">
+                {{ __('Ecosystem') }}
             </x-responsive-nav-link>
         </div>
 

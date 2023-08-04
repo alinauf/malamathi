@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ecosystem;
+use App\SL\EcosystemSL;
 use Illuminate\Http\Request;
 
 class EcosystemController extends Controller
 {
+
+    private EcosystemSL $ecosystemSL;
+
+    public function __construct(EcosystemSL $ecosystemSL)
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+        $this->ecosystemSL = $ecosystemSL;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('ecosystem.index');
     }
 
     /**
@@ -20,7 +30,9 @@ class EcosystemController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Ecosystem::class);
+
+        return view('ecosystem.create');
     }
 
     /**
@@ -28,7 +40,23 @@ class EcosystemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Ecosystem::class);
+
+        $request->validate([
+            'atoll_id' => 'required',
+            'island_id' => 'required',
+            'name' => 'required|unique:ecosystems,name',
+            'latitude' => ['nullable', 'regex:/^[-]?((([0-8]?[0-9])\.(\d+))|(90(\.0+)?))$/'],
+            'longitude' => ['nullable', 'regex:/^[-]?((([0-9]?[0-9]|1[0-7][0-9])\.(\d+))|(180(\.0+)?))$/'],
+        ]);
+
+        $result = $this->ecosystemSL->store($request->all());
+
+        if ($result['status']) {
+            return redirect('ecosystem')->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', $result['payload']);
+        }
     }
 
     /**
@@ -36,7 +64,7 @@ class EcosystemController extends Controller
      */
     public function show(Ecosystem $ecosystem)
     {
-        //
+        return view('ecosystem.show', compact('ecosystem'));
     }
 
     /**
@@ -44,7 +72,8 @@ class EcosystemController extends Controller
      */
     public function edit(Ecosystem $ecosystem)
     {
-        //
+        $this->authorize('update', $ecosystem);
+        return view('ecosystem.edit', compact('ecosystem'));
     }
 
     /**
@@ -52,7 +81,16 @@ class EcosystemController extends Controller
      */
     public function update(Request $request, Ecosystem $ecosystem)
     {
-        //
+        $this->authorize('update', $ecosystem);
+
+        $result = $this->ecosystemSL->update($ecosystem->id, $request->all());
+
+        if ($result['status']) {
+            return redirect('ecosystem')->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', $result['payload']);
+        }
+
     }
 
     /**
@@ -60,6 +98,13 @@ class EcosystemController extends Controller
      */
     public function destroy(Ecosystem $ecosystem)
     {
-        //
+        $this->authorize('delete', $ecosystem);
+        $result = $this->ecosystemSL->destroy($ecosystem->id);
+
+        if ($result['status']) {
+            return redirect('ecosystem')->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', 'Something went wrong.');
+        }
     }
 }

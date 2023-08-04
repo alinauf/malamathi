@@ -9,6 +9,7 @@ use App\Http\Controllers\IslandCategoryController;
 use App\Http\Controllers\PopulationEntryController;
 use \App\Http\Controllers\ZoneController;
 use \App\Http\Controllers\PlotController;
+use \App\Http\Controllers\EcosystemController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('plot', PlotController::class);
 
     Route::delete('/plot/usage/{plotUsage}', [PlotController::class, 'destroyPlotUsage'])->name('plot.usage.destroy');
+
+    Route::resource('ecosystem', EcosystemController::class);
 
 
 });

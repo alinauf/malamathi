@@ -25,7 +25,7 @@ class EcosystemFactory extends Factory
         return [
             'atoll_id' => $atollId,
             'island_id' => $islandId,
-            'name' => $this->faker->title,
+            'name' => $this->faker->word(),
             'description' => $this->faker->text,
             'is_documented' => $this->faker->boolean,
             'is_potentially_threatened' => $this->faker->boolean,
