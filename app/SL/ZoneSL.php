@@ -2,6 +2,7 @@
 
 namespace App\SL;
 
+use App\Models\Plot;
 use App\Models\Zone;
 
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,14 @@ class ZoneSL extends SL
             ->orWhereHas('island', function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%");
             })
+            ->orderBy('id', 'desc')
+            ->paginate($paginateCount);
+    }
+
+    public function plots($zoneId, $search, $paginateCount = 10)
+    {
+        return Plot::where('zone_id', $zoneId)->
+        where('name', 'like', '%' . $search . '%')
             ->orderBy('id', 'desc')
             ->paginate($paginateCount);
     }
