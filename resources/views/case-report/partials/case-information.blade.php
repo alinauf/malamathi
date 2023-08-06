@@ -84,12 +84,42 @@
 
             <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500">
-                    Description
+                    Statement
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                    {{$caseReport->description ?? 'N/A'}}
+                    {{$caseReport->statement ?? 'N/A'}}
                 </dd>
             </div>
+
+            <div class="sm:col-span-1">
+                <dt class="text-sm font-medium text-gray-500">
+                    Submitted By
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                    {{$caseReport->submitted_by ?? 'N/A'}}
+                </dd>
+            </div>
+
+
+            <div class="sm:col-span-1">
+                <dt class="text-sm font-medium text-gray-500">
+                    Phone
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                    {{$caseReport->phone ?? 'N/A'}}
+                </dd>
+            </div>
+
+            <div class="sm:col-span-1">
+                <dt class="text-sm font-medium text-gray-500">
+                    Email
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                    {{$caseReport->email ?? 'N/A'}}
+                </dd>
+            </div>
+
+
 
             <div class="sm:col-span-2">
                 <dt class="text-sm font-medium text-gray-500">

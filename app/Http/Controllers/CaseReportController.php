@@ -50,7 +50,7 @@ class CaseReportController extends Controller
             'statement' => 'required',
             'phone' => [
                 'nullable',
-                'regex:/^\+960\d{7}$/',
+                'regex:/^(?:\+960)?\d{7}$/',
             ],
             'email' => 'nullable|email',
             'submitted_by' => 'nullable|string',

@@ -102,6 +102,18 @@ function createZone()
     );
 }
 
+function createEcosystem()
+{
+
+    $island = createIsland();
+    return \App\Models\Ecosystem::factory()->create(
+        [
+            'atoll_id' => $island->atoll_id,
+            'island_id' => $island->id,
+        ]
+    );
+}
+
 
 function createIslandCategory()
 {
