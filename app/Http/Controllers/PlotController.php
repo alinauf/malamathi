@@ -44,12 +44,14 @@ class PlotController extends Controller
     {
         $this->authorize('create', Plot::class);
 
-        $result = $this->plotSL->store($request->all());
 
         $request->validate([
             'zone_id' => 'required',
             'name' => 'required',
         ]);
+
+        $result = $this->plotSL->store($request->all());
+
 
         if ($result['status']) {
             return redirect('plot')->with('success', $result['payload']);
@@ -115,7 +117,7 @@ class PlotController extends Controller
         $result = $plotUsageSL->destroy($plotUsage->id);
 
         if ($result['status']) {
-            return redirect('plot/'.$plotId)->with('success', $result['payload']);
+            return redirect('plot/' . $plotId)->with('success', $result['payload']);
         } else {
             return redirect()->back()->with('errors', 'Something went wrong.');
         }

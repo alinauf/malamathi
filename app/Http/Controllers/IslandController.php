@@ -42,7 +42,6 @@ class IslandController extends Controller
     {
         $this->authorize('create', Island::class);
 
-        $result = $this->islandSL->store($request->all());
 
         $request->validate([
             'atoll_id' => 'required',
@@ -50,6 +49,9 @@ class IslandController extends Controller
             'name' => 'required',
             'code' => 'required',
         ]);
+
+        $result = $this->islandSL->store($request->all());
+
 
         if ($result['status']) {
             return redirect('island')->with('success', $result['payload']);

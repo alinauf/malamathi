@@ -42,13 +42,13 @@ class ZoneController extends Controller
     {
         $this->authorize('create', Zone::class);
 
-        $result = $this->zoneSL->store($request->all());
-
         $request->validate([
             'atoll_id' => 'required',
             'island_id' => 'required',
             'name' => 'required',
         ]);
+
+        $result = $this->zoneSL->store($request->all());
 
         if ($result['status']) {
             return redirect('zone')->with('success', $result['payload']);

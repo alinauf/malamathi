@@ -42,11 +42,13 @@ class IslandCategoryController extends Controller
     {
         $this->authorize('create', IslandCategory::class);
 
-        $result = $this->islandCategorySL->store($request->all());
 
         $request->validate([
             'name' => 'required',
         ]);
+
+        $result = $this->islandCategorySL->store($request->all());
+
 
         if ($result['status']) {
             return redirect('island-category')->with('success', $result['payload']);

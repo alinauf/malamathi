@@ -42,12 +42,12 @@ class AtollController extends Controller
     {
         $this->authorize('create', Atoll::class);
 
-        $result = $this->atollSL->store($request->all());
-
         $request->validate([
             'name' => 'required',
             'code' => 'required',
         ]);
+
+        $result = $this->atollSL->store($request->all());
 
         if ($result['status']) {
             return redirect('atoll')->with('success', $result['payload']);
@@ -92,7 +92,7 @@ class AtollController extends Controller
         ];
 
 
-        return view('atoll.show', compact('atoll','populationCounts', 'lastPopulationEntry'));
+        return view('atoll.show', compact('atoll', 'populationCounts', 'lastPopulationEntry'));
     }
 
     /**
