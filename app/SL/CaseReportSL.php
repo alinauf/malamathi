@@ -4,6 +4,7 @@ namespace App\SL;
 
 use App\Models\CaseReport;
 
+use App\Models\CaseReportLink;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -174,5 +175,22 @@ class CaseReportSL extends SL
         }
     }
 
+    public function destroyCaseLink($id): bool|array
+    {
+        DB::beginTransaction();
+        $caseReportLink = CaseReportLink::where('id', $id)->first();
+
+        try {
+            $caseReportLink->delete();
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return false;
+        }
+
+        DB::commit();
+
+        return ['status' => true, 'payload' => 'The case link has been deleted'];
+    }
 
 }

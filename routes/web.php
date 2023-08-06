@@ -51,6 +51,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('ecosystem', EcosystemController::class);
 
     Route::resource('case-report', CaseReportController::class);
+    Route::post('/plot/{plot}/usage', [PlotController::class, 'addPlotUsage'])->name('plot.usage.create');
+
+    Route::post('/case-report/{caseReport}/link', [CaseReportController::class, 'addCaseLink'])->name('case-report.link.create');
+    Route::delete('/case-report/link/{caseReportLink}', [CaseReportController::class, 'destroyCaseLink'])->name('case-report.link.destroy');
 
 
 });
