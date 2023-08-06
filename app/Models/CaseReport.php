@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Ecosystem extends Model
+class CaseReport extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -14,28 +14,35 @@ class Ecosystem extends Model
     protected $fillable = [
         'atoll_id',
         'island_id',
-        'name',
-        'description',
-        'is_documented',
-        'is_potentially_threatened',
-        'is_threatened',
-        'is_destroyed',
+        'ecosystem_id',
+        'title',
+        'statement',
+        'submitted_by',
+        'phone',
+        'email',
         'latitude',
         'longitude',
+        'is_verified',
     ];
-
-    public function island()
-    {
-        return $this->belongsTo(Island::class);
-    }
 
     public function atoll()
     {
         return $this->belongsTo(Atoll::class);
     }
 
-    public function caseReports()
+    public function island()
     {
-        return $this->hasMany(CaseReport::class);
+        return $this->belongsTo(Island::class);
     }
+
+    public function ecosystem()
+    {
+        return $this->belongsTo(Ecosystem::class);
+    }
+
+    public function caseReportLinks()
+    {
+        return $this->hasMany(CaseReportLink::class);
+    }
+
 }

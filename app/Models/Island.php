@@ -43,6 +43,11 @@ class Island extends Model
         return $this->hasMany(Ecosystem::class);
     }
 
+    public function caseReports()
+    {
+        return $this->hasMany(CaseReport::class);
+    }
+
 
 
 }

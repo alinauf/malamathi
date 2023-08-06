@@ -63,9 +63,13 @@ class PermissionSeeder extends Seeder
             'edit ecosystems',
             'delete ecosystems',
 
-            'create cases',
-            'edit cases',
-            'delete cases',
+            'create case reports',
+            'edit case reports',
+            'delete case reports',
+
+            'create case report links',
+            'edit case report links',
+            'delete case report links',
         ];
     }
 }

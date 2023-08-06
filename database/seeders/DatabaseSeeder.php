@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Atoll;
+use App\Models\CaseReport;
+use App\Models\CaseReportLink;
 use App\Models\Ecosystem;
 use App\Models\Island;
 use App\Models\IslandCategory;
@@ -56,6 +58,9 @@ class DatabaseSeeder extends Seeder
         PlotUsage::factory()->count(100)->create();
 
         Ecosystem::factory()->count(10)->create();
+
+        CaseReport::factory()->count(50)->create();
+        CaseReportLink::factory()->count(100)->create();
 
 
     }

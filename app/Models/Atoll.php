@@ -38,4 +38,9 @@ class Atoll extends Model
         return $this->hasMany(Ecosystem::class);
     }
 
+    public function caseReports()
+    {
+        return $this->hasMany(CaseReport::class);
+    }
+
 }
