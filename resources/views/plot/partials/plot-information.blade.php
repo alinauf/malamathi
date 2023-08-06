@@ -86,7 +86,7 @@
                     <?php
                     $latestPlotOwnerByDate = $plot->plotUsages->sortByDesc('created_at')->first();
                     ?>
-                    @foreach($plot->plotUsages as $plotUsage)
+                    @foreach($plot->plotUsages->sortByDesc('created_at') as $plotUsage)
                         @if($plotUsage->id === $latestPlotOwnerByDate->id)
                             <li class="flex items-center justify-between gap-x-6 py-5">
                                 <div class="min-w-0">

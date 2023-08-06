@@ -122,4 +122,26 @@ class PlotController extends Controller
             return redirect()->back()->with('errors', 'Something went wrong.');
         }
     }
+
+    public function addPlotUsage(Plot $plot, Request $request)
+    {
+        $this->authorize('create', PlotUsage::class);
+
+        $plotUsageSL = new PlotUsageSL();
+        $data = $request->all();
+        $data['plot_id'] = $plot->id;
+
+        $request->validate([
+            'owner_name' => 'required',
+            'purpose' => 'required',
+        ]);
+
+        $result = $plotUsageSL->store($data);
+
+        if ($result['status']) {
+            return redirect('plot/' . $plot->id)->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', 'Something went wrong.');
+        }
+    }
 }
