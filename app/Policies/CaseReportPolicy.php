@@ -36,4 +36,18 @@ class CaseReportPolicy
         }
     }
 
+    public function verify(User $user, CaseReport $caseReport)
+    {
+        if ($user->can('verify case reports')) {
+            return true;
+        }
+    }
+
+    public function unpublish(User $user, CaseReport $caseReport)
+    {
+        if ($user->can('unpublish case reports')) {
+            return true;
+        }
+    }
+
 }

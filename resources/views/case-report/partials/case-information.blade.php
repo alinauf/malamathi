@@ -1,44 +1,34 @@
 <div x-data="{
             showDeleteModal:false,
+            showVerifyModal:false,
+            showUnpublishModal:false,
                 keydown(){
                 this.showDeleteModal=false;
+                this.showVerifyModal=false;
+                this.showUnpublishModal=false;
             }
     }" class="">
     <div class=" pb-5 flex justify-between">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
             Case Report Information
+            @if($caseReport->is_verified)
+                <span class="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200">
+                    <svg class="h-1.5 w-1.5 fill-green-500" viewBox="0 0 6 6" aria-hidden="true">
+                        <circle cx="3" cy="3" r="3"/>
+                    </svg>
+                    Verified
+                </span>
+            @else
+                <span class="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200">
+                    <svg class="h-1.5 w-1.5 fill-yellow-500" viewBox="0 0 6 6" aria-hidden="true">
+                        <circle cx="3" cy="3" r="3"/>
+                    </svg>
+                    Unverified
+                </span>
+            @endif
         </h3>
 
-        <div class="flex">
-            <span class="hidden sm:block">
-                <a href="{{url("case-report/$caseReport->id/edit")}}"
-                   class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-                    <!-- Heroicon name: solid/pencil -->
-                    <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 20 20"
-                         fill="currentColor" aria-hidden="true">
-                        <path
-                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                    </svg>
-                    Edit
-                </a>
-             </span>
-            <span class="hidden sm:block ml-3">
-                          <button type="button" @click="showDeleteModal=true"
-                                  class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                            <!-- Heroicon name: solid/link -->
-                              <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500"
-                                   viewBox="0 0 20 20"
-                                   fill="currentColor">
-                                  <path fill-rule="evenodd"
-                                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                        clip-rule="evenodd"/>
-                              </svg>
-                              Delete
-                          </button>
-                        </span>
-        </div>
-
+        @include('case-report.partials.case-information-actions')
     </div>
     <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
         <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
@@ -69,6 +59,26 @@
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900">
                     {{isset($caseReport->ecosystem) ? $caseReport->ecosystem->name : 'NA'}}
+                    @if(isset($caseReport->ecosystem))
+                        @if($caseReport->ecosystem->is_destroyed)
+                            <span class="ml-3 inline-flex items-center rounded-md bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Destroyed</span>
+                        @endif
+
+                        @if($caseReport->ecosystem->is_threatened && !$caseReport->ecosystem->is_destroyed)
+                            <span class="ml-3 inline-flex items-center rounded-md bg-red-50 px-1.5 py-0.5 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                                Threatened
+                            </span>
+                        @endif
+
+                        @if($caseReport->ecosystem->is_potentially_threatened &&
+                        !$caseReport->ecosystem->is_threatened &&
+                         !$caseReport->ecosystem->is_destroyed)
+                            <span class=" ml-3 inline-flex items-center rounded-md bg-yellow-50 px-1.5 py-0.5 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"
+                            >Potentially Threatened
+                            </span>
+                        @endif
+                    @endif
+
                 </dd>
             </div>
 
@@ -120,7 +130,6 @@
             </div>
 
 
-
             <div class="sm:col-span-2">
                 <dt class="text-sm font-medium text-gray-500">
                     Case Report Links
@@ -169,4 +178,168 @@
                             title="Are you sure"
                             subtitle="Please confirm if you would like to delete the case-report"
     />
+
+    @if(!$caseReport->is_verified)
+        <div class="fixed z-10 inset-0 overflow-y-auto" x-show="showVerifyModal" aria-labelledby="modal-title"
+             role="dialog"
+             aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0"
+                     x-transition:enter-end="opacity-100"
+
+                     x-transition:leave="transition ease-in duration-200"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0"
+
+                     aria-hidden="true"></div>
+
+                <!-- This element is to trick the browser into centering the modal contents. -->
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                <div
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+
+
+                        class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                    <div>
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                            <!-- Heroicon name: outline/check -->
+                            <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                        </div>
+                        <div class="mt-3 text-center sm:mt-5">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Would you like to verify this case report?
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">
+                                    Upon verification, this case report will be made visible on the public case report
+                                    page.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="{{ url("/case-report/$caseReport->id/verify") }}" method="post">
+                        @csrf
+
+                        <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+
+                            <button type="submit"
+                                    class="w-full inline-flex justify-center rounded-md border border-transparent
+                            shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700
+                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm">
+                                Verify
+                            </button>
+
+
+                            <button type="button" @click="showVerifyModal=false"
+                                    class="mt-3 w-full inline-flex justify-center rounded-md border
+                            border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700
+                            hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0
+                            sm:col-start-1 sm:text-sm">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if($caseReport->is_verified)
+        <div class="fixed z-10 inset-0 overflow-y-auto" x-show="showUnpublishModal" aria-labelledby="modal-title"
+             role="dialog"
+             aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0"
+                     x-transition:enter-end="opacity-100"
+
+                     x-transition:leave="transition ease-in duration-200"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0"
+
+                     aria-hidden="true"></div>
+
+                <!-- This element is to trick the browser into centering the modal contents. -->
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                <div
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+
+
+                        class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                    <div>
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100">
+                            <!-- Heroicon name: outline/check -->
+                            <svg class="h-6 w-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                        </div>
+                        <div class="mt-3 text-center sm:mt-5">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Would you like to unpublish this case report?
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">
+                                    Upon unpublishing, this case report will be removed from the public case report
+                                    page.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="{{ url("/case-report/$caseReport->id/unpublish") }}" method="post">
+                        @csrf
+
+                        <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+
+                            <button type="submit"
+                                    class="w-full inline-flex justify-center rounded-md border border-transparent
+                            shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700
+                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:col-start-2 sm:text-sm">
+                                Unpublish
+                            </button>
+
+
+                            <button type="button" @click="showUnpublishModal=false"
+                                    class="mt-3 w-full inline-flex justify-center rounded-md border
+                            border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700
+                            hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:mt-0
+                            sm:col-start-1 sm:text-sm">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    @endif
+
+
 </div>

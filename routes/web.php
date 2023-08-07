@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/case-report/{caseReport}/link', [CaseReportController::class, 'addCaseLink'])->name('case-report.link.create');
     Route::delete('/case-report/link/{caseReportLink}', [CaseReportController::class, 'destroyCaseLink'])->name('case-report.link.destroy');
 
+    Route::post('/case-report/{caseReport}/verify', [CaseReportController::class, 'verifyCaseReport'])->name('case-report.verify');
+    Route::post('/case-report/{caseReport}/unpublish', [CaseReportController::class, 'unpublishCaseReport'])->name('case-report.unpublish');
 
 });
 

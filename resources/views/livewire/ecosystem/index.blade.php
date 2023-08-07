@@ -40,18 +40,8 @@
                                 </th>
 
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 ">
-                                    Is Potentially threatened?
+                                    Status
                                 </th>
-
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 ">
-                                    Is Threatened?
-                                </th>
-
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 ">
-                                    Is Destroyed?
-                                </th>
-
-
 
 
                                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -89,15 +79,26 @@
                                     </td>
 
                                     <td class=" px-3 py-4 text-sm text-gray-500 text-ellipsis overflow-hidden">
-                                        {{$ecosystem->is_potentially_threatened ? "Yes" : "No"}}
-                                    </td>
 
-                                    <td class=" px-3 py-4 text-sm text-gray-500 text-ellipsis overflow-hidden">
-                                        {{$ecosystem->is_threatened ? "Yes" : "No"}}
-                                    </td>
+                                        @if($ecosystem->is_destroyed)
+                                            <span class=" inline-flex items-center rounded-md bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Destroyed</span>
 
-                                    <td class=" px-3 py-4 text-sm text-gray-500 text-ellipsis overflow-hidden">
-                                        {{$ecosystem->is_destroyed ? "Yes" : "No"}}
+                                        @elseif($ecosystem->is_threatened && !$ecosystem->is_destroyed)
+                                            <span class=" inline-flex items-center rounded-md bg-red-50 px-1.5 py-0.5 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                                Threatened
+                            </span>
+                                        @elseif($ecosystem->is_potentially_threatened &&
+                                        !$ecosystem->is_threatened &&
+                                         !$ecosystem->is_destroyed)
+                                            <span class=" inline-flex items-center rounded-md bg-yellow-50 px-1.5 py-0.5 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"
+                                            >Potentially Threatened
+                            </span>
+                                            @elseif($ecosystem->is_documented)
+                                            <span class="inline-flex items-center rounded-md bg-blue-50 px-1.5 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Documented</span>
+                                        @else
+                                            NA
+                                        @endif
+
                                     </td>
 
 

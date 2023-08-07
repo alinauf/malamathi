@@ -146,4 +146,31 @@ class CaseReportController extends Controller
             return redirect()->back()->with('errors', 'Something went wrong.');
         }
     }
+
+    public function verifyCaseReport(CaseReport $caseReport)
+    {
+        $this->authorize('verify', $caseReport);
+
+        $result = $this->caseReportSL->verifyCaseReport($caseReport);
+
+        if ($result['status']) {
+            return redirect('case-report/' . $caseReport->id)->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', 'Something went wrong.');
+        }
+    }
+
+    public function unpublishCaseReport(CaseReport $caseReport)
+    {
+        $this->authorize('unpublish', $caseReport);
+
+        $result = $this->caseReportSL->verifyCaseReport($caseReport, false);
+
+        if ($result['status']) {
+            return redirect('case-report/' . $caseReport->id)->with('success', $result['payload']);
+        } else {
+            return redirect()->back()->with('errors', 'Something went wrong.');
+        }
+    }
+
 }

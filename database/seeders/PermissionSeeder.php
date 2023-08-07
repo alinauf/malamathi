@@ -66,6 +66,8 @@ class PermissionSeeder extends Seeder
             'create case reports',
             'edit case reports',
             'delete case reports',
+            'verify case reports',
+            'unpublish case reports',
 
             'create case report links',
             'edit case report links',
