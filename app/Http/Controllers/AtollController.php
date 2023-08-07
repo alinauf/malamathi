@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Atoll;
+use App\Models\IslandCategory;
 use App\SL\AtollSL;
 use Illuminate\Http\Request;
 
@@ -91,8 +92,21 @@ class AtollController extends Controller
             'expatsData' => $expatsData,
         ];
 
+        $atollIslandCategories =  $atoll->islands->groupBy('island_category_id');
 
-        return view('atoll.show', compact('atoll', 'populationCounts', 'lastPopulationEntry'));
+        $islandCategories = [];
+
+        foreach ($atollIslandCategories as $categoryId => $islands) {
+            $category = IslandCategory::find($categoryId);
+            $categoryName = $category ? $category->name : 'Unknown Category';
+
+            $islandCategories[] = [
+                'category' => $categoryName,
+                'total_islands' => count($islands),
+            ];
+        }
+
+        return view('atoll.show', compact('atoll', 'populationCounts', 'lastPopulationEntry','islandCategories'));
     }
 
     /**

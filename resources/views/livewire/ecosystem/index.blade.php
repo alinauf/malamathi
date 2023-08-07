@@ -93,7 +93,7 @@
                                             <span class=" inline-flex items-center rounded-md bg-yellow-50 px-1.5 py-0.5 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"
                                             >Potentially Threatened
                             </span>
-                                            @elseif($ecosystem->is_documented)
+                                            @els eif($ecosystem->is_documented)
                                             <span class="inline-flex items-center rounded-md bg-blue-50 px-1.5 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Documented</span>
                                         @else
                                             NA
