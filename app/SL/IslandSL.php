@@ -34,6 +34,8 @@ class IslandSL extends SL
                 'island_category_id' => $data['island_category_id'],
                 'code' => $data['code'],
                 'name' => $data['name'],
+                'latitude' => $data['latitude'] ?? null,
+                'longitude' => $data['longitude'] ?? null,
             ]);
 
 
@@ -77,6 +79,9 @@ class IslandSL extends SL
             $island->code = $code;
             $island->atoll_id = $atollId;
             $island->island_category_id = $islandCategoruId;
+
+            $island->latitude = $data['latitude'] ?? $island->latitude;
+            $island->longitude = $data['longitude'] ?? $island->longitude;
 
             $islandSave = $island->save();
 

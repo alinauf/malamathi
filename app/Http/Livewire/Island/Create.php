@@ -14,6 +14,9 @@ class Create extends Component
     public $island_categories;
     public $atolls;
 
+    public $latitude;
+    public $longitude;
+
     public $formValidationStatus;
 
     protected $rules = [
@@ -21,6 +24,8 @@ class Create extends Component
         'code' => 'required|unique:islands,code',
         'atoll_id' => 'required',
         'island_category_id' => 'required',
+        'latitude' => ['nullable', 'regex:/^[-]?((([0-8]?[0-9])\.(\d+))|(90(\.0+)?))$/'],
+        'longitude' => ['nullable', 'regex:/^[-]?((([0-9]?[0-9]|1[0-7][0-9])\.(\d+))|(180(\.0+)?))$/'],
     ];
 
     protected $messages =

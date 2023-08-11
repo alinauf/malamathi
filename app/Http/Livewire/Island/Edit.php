@@ -17,6 +17,9 @@ class Edit extends Component
     public $island_categories;
     public $atolls;
 
+    public $latitude;
+    public $longitude;
+
     public $formValidationStatus;
 
     protected $rules = [
@@ -24,6 +27,8 @@ class Edit extends Component
         'code' => 'required',
         'atoll_id' => 'required',
         'island_category_id' => 'required',
+        'latitude' => ['nullable', 'regex:/^[-]?((([0-8]?[0-9])\.(\d+))|(90(\.0+)?))$/'],
+        'longitude' => ['nullable', 'regex:/^[-]?((([0-9]?[0-9]|1[0-7][0-9])\.(\d+))|(180(\.0+)?))$/'],
     ];
 
     protected $messages =
@@ -45,6 +50,9 @@ class Edit extends Component
         $this->code = $island->code;
         $this->atoll_id = $island->atoll_id;
         $this->island_category_id = $island->island_category_id;
+
+        $this->latitude = $island->latitude;
+        $this->longitude = $island->longitude;
     }
 
 

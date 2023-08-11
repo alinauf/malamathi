@@ -96,4 +96,50 @@ it('can update an island', function () {
 
 })->group('island');
 
+it('can update an island latitude and longitude', function () {
+
+    $atoll = createAtoll();
+    $islandCategory = createIslandCategory();
+
+    $island = \App\Models\Island::factory()->create(
+        [
+            'atoll_id' => $atoll->id,
+            'island_category_id' => $islandCategory->id,
+        ]
+    );
+
+
+    $this->assertDatabaseHas('islands', [
+        'atoll_id' => $island->atoll_id,
+        'island_category_id' => $island->island_category_id,
+        'code' => $island->code,
+        'name' => $island->name,
+    ]);
+
+    $latitude = fake()->latitude;
+    $longitude = fake()->longitude;
+
+    $islandSL = new \App\SL\IslandSL();
+    $data = [
+        'latitude' => $latitude,
+        'longitude' => $longitude
+    ];
+
+    $response = $islandSL->update($island->id, $data);
+
+    expect($response['status'])->toBeTrue()
+        ->and($response['payload'])->toBe('The island has been successfully updated');
+
+    $this->assertDatabaseHas('islands', [
+        'atoll_id' => $atoll->id,
+        'island_category_id' => $islandCategory->id,
+        'code' => $island->code,
+        'name' => $island->name,
+        'latitude' => $latitude,
+        'longitude' => $longitude
+    ]);
+
+})->group('island');
+
+
 

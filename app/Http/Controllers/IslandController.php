@@ -48,6 +48,8 @@ class IslandController extends Controller
             'island_category_id' => 'required',
             'name' => 'required',
             'code' => 'required',
+            'latitude' => ['nullable', 'regex:/^[-]?((([0-8]?[0-9])\.(\d+))|(90(\.0+)?))$/'],
+            'longitude' => ['nullable', 'regex:/^[-]?((([0-9]?[0-9]|1[0-7][0-9])\.(\d+))|(180(\.0+)?))$/'],
         ]);
 
         $result = $this->islandSL->store($request->all());

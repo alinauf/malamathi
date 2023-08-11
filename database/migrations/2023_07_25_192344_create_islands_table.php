@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->integer('island_category_id');
             $table->string('name');
             $table->string('code')->unique();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

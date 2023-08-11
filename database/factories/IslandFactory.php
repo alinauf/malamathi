@@ -24,6 +24,8 @@ class IslandFactory extends Factory
             'island_category_id' => IslandCategory::all()->random()->id,
             'code' => $this->faker->uuid,
             'name' => $this->faker->unique()->city,
+            'latitude' => $this->faker->latitude,
+            'longitude' => $this->faker->longitude,
         ];
     }
 }

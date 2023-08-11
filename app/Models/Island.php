@@ -16,6 +16,8 @@ class Island extends Model
         'island_category_id',
         'name',
         'code',
+        'latitude',
+        'longitude',
     ];
 
     public function islandCategory()

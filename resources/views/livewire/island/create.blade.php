@@ -108,6 +108,49 @@ formValidationStatus:@entangle('formValidationStatus'),
                     @enderror
                 </div>
 
+                {{-- Latitude--}}
+                <div class="sm:col-span-3">
+                    <label for="latitude" class="block text-sm font-medium text-gray-700"
+                    >
+                        Latitude
+                    </label>
+                    <div class="mt-1">
+                        <input type="text" name="latitude"
+                               wire:model="latitude"
+                               id="latitude"
+                               class="
+                            @error('latitude') border border-red-500 @enderror
+                                   shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
+                                   border-gray-300 rounded-md">
+                    </div>
+
+                    @error('latitude')
+                    <p class="mt-2 text-sm text-red-600">{{$message}}</p>
+                    @enderror
+                </div>
+
+                {{-- Longitude--}}
+                <div class="sm:col-span-3">
+                    <label for="longitude" class="block text-sm font-medium text-gray-700"
+                    >
+                        Longitude
+                    </label>
+                    <div class="mt-1">
+                        <input type="text" name="longitude"
+                               wire:model="longitude"
+                               id="longitude"
+                               class="
+                            @error('longitude') border border-red-500 @enderror
+                                   shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
+                                   border-gray-300 rounded-md">
+                    </div>
+
+                    @error('longitude')
+                    <p class="mt-2 text-sm text-red-600">{{$message}}</p>
+                    @enderror
+                </div>
+
+
             </div>
         </div>
 
