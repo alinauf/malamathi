@@ -47,11 +47,13 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // Seed Atoll and Islands
+        $this->call(AtollSeeder::class);
+
+
 
         // TODO: remove below code after proper data is seeded
 
-        Atoll::factory()->count(10)->create();
-        Island::factory()->count(100)->create();
         PopulationEntry::factory()->count(1000)->create();
         Zone::factory()->count(10)->create();
         Plot::factory()->count(30)->create();
