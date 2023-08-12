@@ -22,6 +22,7 @@ use \App\Http\Controllers\Frontend\EcosystemController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('about-us', [AboutController::class, 'index'])->name('about-us.index');
 Route::get('case-reports', [CaseReportController::class, 'index'])->name('case-reports');
+Route::get('case-reports/{caseReport}', [CaseReportController::class, 'show'])->name('case-reports.show');
 Route::get('ecosystems', [EcosystemController::class, 'index'])->name('ecosystems');
 
 require __DIR__ . '/backend-routes.php';

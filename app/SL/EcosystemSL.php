@@ -112,5 +112,58 @@ class EcosystemSL extends SL
         }
     }
 
+    public function getAllMarkers()
+    {
+        $markers = Ecosystem::all()->map(function ($ecosystem) {
+
+
+            $status = 'NA';
+            if ($ecosystem->is_destroyed) {
+                $status = 'Destroyed';
+            } elseif ($ecosystem->is_threatened && !$ecosystem->is_destroyed) {
+                $status = 'Threatened';
+            } elseif ($ecosystem->is_potentially_threatened &&
+                !$ecosystem->is_threatened &&
+                !$ecosystem->is_destroyed) {
+                $status = 'Potentially Threatened';
+            } elseif ($ecosystem->is_documented) {
+                $status = 'Documented';
+            }
+            return [
+                'id' => $ecosystem->id,
+                'name' => $ecosystem->name,
+                'latitude' => $ecosystem->latitude,
+                'longitude' => $ecosystem->longitude,
+                'status' => $status,
+                'url' => '/ecosystem/' . $ecosystem->id,
+            ];
+        });
+
+        return $markers;
+
+    }
+
+    public function getStats()
+    {
+        $destroyedCount = Ecosystem::where('is_destroyed', true)->count();
+        $threatenedCount = Ecosystem::where('is_destroyed', false)->where('is_threatened', true)->count();
+        $potentiallyThreatenedCount = Ecosystem::where('is_destroyed', false)->where('is_threatened', false)->where('is_potentially_threatened', true)->count();
+        $documentedCount = Ecosystem::
+        where('is_documented', true)->count();
+        $unDocumented = Ecosystem::
+        where('is_documented', false)->count();
+
+        $allEcosystems = Ecosystem::all()->count();
+
+        return [
+            'destroyed_count' => $destroyedCount,
+            'threatened_count' => $threatenedCount,
+            'potentially_threatened_count' => $potentiallyThreatenedCount,
+            'documented_count' => $documentedCount,
+            'undocumented_count' => $unDocumented,
+            'all_ecosystems' => $allEcosystems,
+        ];
+    }
+
 
 }

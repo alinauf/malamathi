@@ -7,7 +7,5 @@
                 @include('ecosystem.partials.show-multiple-locations')
             </div>
         </div>
-
-
     </div>
 </x-app-layout>
