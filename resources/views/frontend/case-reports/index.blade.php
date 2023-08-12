@@ -1,13 +1,18 @@
 <x-frontend-layout>
-
-    <div class="py-24 sm:py-32">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl lg:max-w-4xl">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Case Reports</h2>
+<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+  
+    <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
+        <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded">
+                <h1 class="text-2xl my-4 font-serif text-bold text-gray-900 text-left pb-0 pt-3">Case Reports</h1>
                 <p class="mt-2 text-lg leading-8 text-gray-600">
                     Here are the latest case reports submitted
                 </p>
-                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+                <p class="text-lg">
+                    {{-- Stats: --}}
+                </p>
+        </div>
+        
+        <div class="md:w-3/4 px-6 pb-6 bg-gray-50 rounded">
                     @foreach($cases as $case)
                         <a href="{{url("/case-reports/$case->id")}}" >
 
@@ -21,8 +26,7 @@
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">
                                         <span class="absolute inset-0"></span>
-                                        {{ $case->created_at->format('d M, Y')
-}}
+                                        {{ $case->created_at->format('d M, Y')}}
                                     </time>
                                     @if(isset($case->ecosystem))
                                         <a href="#"
@@ -64,7 +68,6 @@
                         </a>
 
                     @endforeach
-                </div>
                 <div class="mt-8">
                     {{$cases->links()}}
                 </div>

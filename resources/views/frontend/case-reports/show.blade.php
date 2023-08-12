@@ -1,8 +1,23 @@
 <x-frontend-layout>
-    <div class="bg-white px-6 py-32 lg:px-8">
-
-
-        <div class="mx-auto max-w-3xl text-base leading-7 text-gray-700">
+<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+  
+    <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
+        <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded">
+                <h1 class="text-xl my-4 font-serif text-gray-dark text-left pb-0 pt-3">
+                    <small>Title:</small><br>
+                    <b>{{  $caseReport->title  }}</b>
+                    <br>
+                 </h1>
+                <p class="text-lg">
+                    <br>
+                    Ecosystem: <b>{{  isset($caseReport->ecosystem) ? $caseReport->ecosystem->name : '-'  }}</b>
+                    <br>
+                    Island: <b>{{  isset($caseReport->island) ? $caseReport->island->name : '-'  }}</b>
+                    <br>
+                    Atoll: <b>{{  isset($caseReport->atoll) ? $caseReport->atoll->name : '-'  }}</b>
+                </p>
+        </div>
+        <div class="md:w-3/4 px-6 pb-6 bg-gray-50 rounded">
 
             @php
                 $latitude = $caseReport->latitude;
@@ -10,7 +25,7 @@
             @endphp
 
 
-            <p class="text-base font-semibold leading-7 text-blue-600">{{$caseReport->island->code .'. '. $caseReport->island->name}}</p>
+            <p class="text-base font-semibold leading-7 text-green-600">{{$caseReport->island->code .'. '. $caseReport->island->name}}</p>
             <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{
             $caseReport->title
             }}</h1>
@@ -44,7 +59,7 @@
 
         </div>
     </div>
-
+</div>
     @push('scripts')
         <script>
             const latitude = @json($latitude);
