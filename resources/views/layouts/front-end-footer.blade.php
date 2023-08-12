@@ -1,9 +1,9 @@
-  <div class="mx-auto flex max-w-7xl px-2 sm:px-6 lg:px-8">
+  <div class="mx-auto flex flex-col md:flex-row max-w-7xl px-2 sm:px-6 lg:px-8">
 
     <div class="md:w-1/3 px-6 pb-6">
         <div class="flex my-6">
             <img src="/brand/logo.svg" alt="Logo" class="w-1/2 pr-1">
-            <div class="text-left my-4 pl-2">
+            <div class="text-left my-5 py-3 md:pl-2">
                 {{-- <h1 class="text-2xl my-4 font-serif font-bold text-gray-dark text-left pb-0">Contact Us</h1> --}}
                 <p>Malamathi project is funded and supported by GEF/UNDP Maldives.</p>
             </div>
@@ -11,16 +11,17 @@
     </div>
 
     <div class="md:w-1/3 px-6 pb-6">
-            <h1 class="text-2xl my-4 font-serif font-bold text-gray-dark text-left pb-0">Contact Us</h1>
+            <h1 class="text-xl my-4 font-serif font-bold text-blue-700 text-left pb-0">Contact Us</h1>
             <p class="lead">
-            H. V Kanmmathi 10, 10136 Turin Male', Maldives <br>
+            H. V Kanmmathi 10, 10136 Turin,<br> Male', Maldives. <br>
+            <hr class="my-2">
             Phone: (0039) 333 12 68 347 <br>
             Email: hello@malamathi.org
             </p>
     </div>
 
     <div class="md:w-1/3 px-6 pb-6">
-            <h1 class="text-2xl my-4 font-serif font-bold text-gray-dark text-left pb-0">Links</h1>
+            <h1 class="text-xl my-4 font-serif font-bold text-blue-700 text-left pb-0">Links</h1>
             <p class="lead">
             <a class="hover:underline mb-1" href="#">Privacy Policy & Attributions</a>
             <br>
@@ -31,7 +32,7 @@
   </div>
 
 
-    <div class="mx-auto flex max-w-7xl px-2 sm:px-6 lg:px-8">
+  <div class="mx-auto flex flex-col md:flex-row max-w-7xl px-2 sm:px-6 lg:px-8">
 
     <div class="md:w-1/3 px-6 pb-6">
         <div class="flex my-6">
