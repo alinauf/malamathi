@@ -48,7 +48,7 @@
         {{ $slot }}
     </main>
 
-
+    @include('layouts.front-end-footer')
 </div>
 @stack('scripts')
 @livewireScripts

@@ -1,7 +1,7 @@
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
 
     <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
-        <div class="md:w-2/3 px-6 pb-6 bg-gray-50">
+        <div class="md:w-2/3 ">
         <div class="introimage-container">
         <div class="introimage">
             <img src="/addu_by_aishath_naj.png" alt="Intro Image">
@@ -9,14 +9,14 @@
         </div>
     </div>
 
-    <div class="md:w-1/3 px-6 pb-6 bg-gray-50">
+    <div class="md:w-1/3 px-6 ">
         <h1 class="text-2xl my-4 font-serif font-bold text-gray-dark  py-5">Let’s Document our Raajje!</h1>
 
         <p class="lead text-xl my-6">
             Do you have a story to tell? A snap to share? A concern to raise?
         </p>
         <p class="lead text-left my-6">
-            <a class="btn btn-success px-5 py-3 text-xl rounded bg-green-50 hover:bg-green-200" href="#" role="button">Be A Witness</a>
+            <a class="btn btn-success px-5 py-3 text-xl rounded bg-green-100 hover:bg-green-200 active:bg-green-300" href="#" role="button">Be A Witness</a>
         </p>
     </div>
 
@@ -37,7 +37,6 @@
             </p>
         </div>
     </div>
-
 
 
 </div>
@@ -79,6 +78,13 @@
     background-size:110%;
     animation: slideAnimate 10s ease-in-out infinite; 
   }
+
+  /**if screen size is mobile then introimage:before width will be 100px */
+    @media only screen and (max-width: 600px) {
+        .introimage:before{
+            width:100px !important;
+        }
+    }
 
 @keyframes slideAnimate{
   0%,100%{
