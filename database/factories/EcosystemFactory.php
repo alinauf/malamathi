@@ -20,7 +20,15 @@ class EcosystemFactory extends Factory
     {
 
         $atollId = \App\Models\Atoll::all()->random()->id;
-        $islandId = \App\Models\Island::where('atoll_id', $atollId)->get()->random()->id;
+        $island = \App\Models\Island::where('atoll_id', $atollId)->get()->random();
+
+        $islandId = $island->id;
+
+        $islandLatitude = $island->latitude ?? 3.0;
+        $islandLongitude = $island->longitude ?? 74.5;
+
+        $latitude = $this->faker->latitude($islandLatitude - 0.1, $islandLatitude + 0.1);
+        $longitude = $this->faker->longitude($islandLongitude - 0.1, $islandLongitude + 0.1);
 
         return [
             'atoll_id' => $atollId,
@@ -31,8 +39,8 @@ class EcosystemFactory extends Factory
             'is_potentially_threatened' => $this->faker->boolean,
             'is_threatened' => $this->faker->boolean,
             'is_destroyed' => $this->faker->boolean,
-            'latitude' => $this->faker->latitude,
-            'longitude' => $this->faker->longitude,
+            'latitude' => $latitude,
+            'longitude' => $longitude
         ];
     }
 

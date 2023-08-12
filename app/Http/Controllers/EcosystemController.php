@@ -22,7 +22,32 @@ class EcosystemController extends Controller
      */
     public function index()
     {
-        return view('ecosystem.index');
+        $markers = Ecosystem::all()->map(function ($ecosystem) {
+
+
+            $status = 'NA';
+            if ($ecosystem->is_destroyed) {
+                $status = 'Destroyed';
+            } elseif ($ecosystem->is_threatened && !$ecosystem->is_destroyed) {
+                $status = 'Threatened';
+            } elseif ($ecosystem->is_potentially_threatened &&
+                !$ecosystem->is_threatened &&
+                !$ecosystem->is_destroyed) {
+                $status = 'Potentially Threatened';
+            } elseif ($ecosystem->is_documented) {
+                $status = 'Documented';
+            }
+            return [
+                'id' => $ecosystem->id,
+                'name' => $ecosystem->name,
+                'latitude' => $ecosystem->latitude,
+                'longitude' => $ecosystem->longitude,
+                'status' => $status,
+                'url' => '/ecosystem/' . $ecosystem->id,
+            ];
+        });
+
+        return view('ecosystem.index', compact('markers'));
     }
 
     /**

@@ -11,6 +11,14 @@
                 <livewire:case-report.link :caseReport="$caseReport"/>
             </div>
 
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                @php
+                    $latitude = $caseReport->latitude;
+                    $longitude = $caseReport->longitude;
+                @endphp
+                @include('components.show-single-location')
+            </div>
+
 
         </div>
     </div>
