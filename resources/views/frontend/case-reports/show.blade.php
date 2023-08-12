@@ -1,6 +1,6 @@
 <x-frontend-layout>
 <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-  
+
     <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
         <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded">
                 <h1 class="text-xl my-4 font-serif text-gray-dark text-left pb-0 pt-3">
@@ -40,7 +40,7 @@
             </div>
             <figure class="mt-16">
                 <img class="aspect-video rounded-xl bg-gray-50 object-cover"
-                     src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=1310&h=873&q=80&facepad=3"
+                     src="https://plus.unsplash.com/premium_photo-1666497934040-ec832d302f13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1940&q=80"
                      alt="">
                 <figcaption class="mt-4 flex gap-x-2 text-sm leading-6 text-gray-500">
                     <svg class="mt-0.5 h-5 w-5 flex-none text-gray-300" viewBox="0 0 20 20" fill="currentColor"
@@ -59,6 +59,46 @@
 
         </div>
     </div>
+
+    @if($caseReport->caseReportLinks->count() > 0)
+    <div class="my-14">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:mx-0">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-xl">Case Links</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">Below are some news articles related to the case</p>
+            </div>
+            <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-6
+            sm:mt-10 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+
+                @foreach($caseReport->caseReportLinks as $caseReportLink)
+                    <article class="flex max-w-xl flex-col items-start justify-between">
+                        <div class="flex items-center gap-x-4 text-xs">
+                            <time datetime="2020-03-16" class="text-gray-500">
+                                {{$caseReportLink->created_at->format('d M, Y')}}
+                            </time>
+
+                        </div>
+                        <div class="group relative">
+                            <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                <a href="#">
+                                    <span class="absolute inset-0"></span>
+{{--                                    Boost your conversion rate--}}
+                                </a>
+                            </h3>
+                            <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                                {{$caseReportLink->description}}
+                            </p>
+                        </div>
+
+                    </article>
+
+                @endforeach
+                <!-- More posts... -->
+            </div>
+        </div>
+    </div>
+    @endif
+
 </div>
     @push('scripts')
         <script>

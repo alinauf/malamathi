@@ -25,4 +25,9 @@ class CaseReportController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('frontend.case-reports.create');
+    }
+
 }

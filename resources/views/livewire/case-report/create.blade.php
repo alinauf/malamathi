@@ -26,10 +26,10 @@ formValidationStatus:@entangle('formValidationStatus'),
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
 
-                <div class="sm:col-span-3">
-                    <label for="atoll_id" class="block text-sm font-medium leading-6 text-gray-900">
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                    <label for="atoll_id" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
                         Atoll</label>
-                    <div class="mt-2">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <select id="atoll_id"
                                 wire:model="atoll_id"
                                 name="atoll_id"
@@ -45,10 +45,10 @@ formValidationStatus:@entangle('formValidationStatus'),
                     @enderror
                 </div>
 
-                <div class="sm:col-span-3">
-                    <label for="island_id" class="block text-sm font-medium leading-6 text-gray-900">Island
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                    <label for="island_id" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Island
                     </label>
-                    <div class="mt-2">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <select id="island_id"
                                 wire:model="island_id"
                                 name="island_id"
@@ -65,10 +65,10 @@ formValidationStatus:@entangle('formValidationStatus'),
                 </div>
 
 
-                <div class="sm:col-span-3">
-                    <label for="ecosystem_id" class="block text-sm font-medium leading-6 text-gray-900">Ecosystem
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                    <label for="ecosystem_id" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Ecosystem
                     </label>
-                    <div class="mt-2">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <select id="ecosystem_id"
                                 wire:model="ecosystem_id"
                                 name="ecosystem_id"
@@ -86,12 +86,12 @@ formValidationStatus:@entangle('formValidationStatus'),
 
 
                 {{-- Title--}}
-                <div class="sm:col-span-3">
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                     <label for="title" class="block text-sm font-medium text-gray-700"
                     >
                         Title <span class="text-red-900">*</span>
                     </label>
-                    <div class="mt-1">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="title"
                                wire:model="title"
                                id="title"
@@ -112,7 +112,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     >
                         Statement <span class="text-red-900">*</span>
                     </label>
-                    <div class="mt-1">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                          <textarea name="statement"
                                    wire:model="statement"
                                    id="statement" cols="5" rows="3" class="
@@ -130,12 +130,12 @@ formValidationStatus:@entangle('formValidationStatus'),
 
 
                 {{-- Submitted By--}}
-                <div class="sm:col-span-3">
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                     <label for="submitted_by" class="block text-sm font-medium text-gray-700"
                     >
                         Submitted By
                     </label>
-                    <div class="mt-1">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="submitted_by"
                                wire:model="submitted_by"
                                id="submitted_by"
@@ -151,12 +151,12 @@ formValidationStatus:@entangle('formValidationStatus'),
                 </div>
 
                 {{-- Phone--}}
-                <div class="sm:col-span-3">
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                     <label for="phone" class="block text-sm font-medium text-gray-700"
                     >
                         Phone
                     </label>
-                    <div class="mt-1">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="phone"
                                wire:model="phone"
                                id="phone"
@@ -173,12 +173,12 @@ formValidationStatus:@entangle('formValidationStatus'),
 
 
                 {{-- Email--}}
-                <div class="sm:col-span-3">
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                     <label for="email" class="block text-sm font-medium text-gray-700"
                     >
                         Email
                     </label>
-                    <div class="mt-1">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="email" name="email"
                                wire:model="email"
                                id="email"
@@ -195,12 +195,12 @@ formValidationStatus:@entangle('formValidationStatus'),
 
 
                 {{-- Latitude--}}
-                <div class="sm:col-span-3">
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                     <label for="latitude" class="block text-sm font-medium text-gray-700"
                     >
                         Latitude
                     </label>
-                    <div class="mt-1">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="latitude"
                                wire:model="latitude"
                                id="latitude"
@@ -216,12 +216,12 @@ formValidationStatus:@entangle('formValidationStatus'),
                 </div>
 
                 {{-- Longitude--}}
-                <div class="sm:col-span-3">
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                     <label for="longitude" class="block text-sm font-medium text-gray-700"
                     >
                         Longitude
                     </label>
-                    <div class="mt-1">
+                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="longitude"
                                wire:model="longitude"
                                id="longitude"

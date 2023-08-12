@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         Plot::factory()->count(30)->create();
         PlotUsage::factory()->count(100)->create();
 
-        Ecosystem::factory()->count(10)->create();
+        Ecosystem::factory()->count(30)->create();
 
         CaseReport::factory()->count(50)->create();
         CaseReportLink::factory()->count(100)->create();

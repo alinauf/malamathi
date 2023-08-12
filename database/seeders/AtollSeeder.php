@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Atoll;
 use App\Models\Island;
 
+use App\Models\IslandCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Log;
@@ -942,10 +943,13 @@ class AtollSeeder extends Seeder
             ]);
 
 
+
             foreach ($atoll['islands'] as $island) {
+                $islandCategory = IslandCategory::inRandomOrder()->first();
+
                 $newIsland = new Island();
                 $newIsland->atoll_id = $newAtoll->id;
-                $newIsland->island_category_id = 5;
+                $newIsland->island_category_id = $islandCategory->id;
                 $newIsland->name = $island['name'];
                 $newIsland->code = $island['atoll_code'];
                 $newIsland->save();
