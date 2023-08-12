@@ -2,7 +2,7 @@
 
     <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
         <div class="md:w-2/3 ">
-        <div class="introimage-container">
+        <div class="introimage-container rounded">
         <div class="introimage">
             <img src="/addu_by_aishath_naj.png" alt="Intro Image">
         </div>
@@ -10,31 +10,30 @@
     </div>
 
     <div class="md:w-1/3 px-6 ">
-        <h1 class="text-2xl my-4 font-serif font-bold text-gray-dark  py-5">Let’s Document our Raajje!</h1>
+        <h1 class="text-2xl my-4 font-serif font-bold text-blue-500  py-5">Let’s Document our Raajje!</h1>
 
-        <p class="lead text-xl my-6">
+        <p class="lead text-lg my-6">
             Do you have a story to tell? A snap to share? A concern to raise?
         </p>
         <p class="lead text-left my-6">
-            <a class="btn btn-success px-5 py-3 text-xl rounded bg-green-100 hover:bg-green-200 active:bg-green-300" href="#" role="button">Be A Witness</a>
+            <a class="btn btn-success px-5 py-3 text-lg rounded bg-green-100 hover:bg-green-200 active:bg-green-300" href="#" role="button">Be A Witness</a>
         </p>
     </div>
 
     </div>
 
     <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
-        <div class="md:w-2/3 px-6 pb-6 bg-gray-50">
+        <div class="md:w-2/3 px-6 pb-6 bg-blue-50 rounded">
             <h1 class="text-2xl my-4 font-serif font-bold text-gray-dark text-left pb-0">Our Mission</h1>
             <p class="lead">To protect, preserve and pass it to the next generation we need to know what’s out there and what changes are occurring to its ecosystems due to climate change and other factors! The aim of Malamathi is to empower communities and individuals to take part in documenting the ecosystems of Maldives. Share with us and take part in this community effort to document the Maldives and changes to its ecosystems over time!</p>
         </div>
 
-        <div class="md:w-1/3 px-6 pb-6 bg-gray-50">
-            <h1 class="text-2xl my-4 font-serif font-bold text-gray-dark text-left pb-0">Contact Us</h1>
-            <p class="lead">
-            H. V Kanmmathi 10, 10136 Turin Male', Maldives <br>
-            Phone: (0039) 333 12 68 347 <br>
-            Email: hello@malamathi.org
+        <div class="md:w-1/3 px-6 pb-6 bg-gray-50 rounded">
+            <h1 class="text-4xl my-2 font-serif font-bold text-gray-dark text-left pb-0 pt-4">"</h1>
+            <p class="lead font-bold text-center">
+            We strive to preserve the beauty and biodiversity of the Maldives for future generations
             </p>
+            <h1 class="text-4xl font-serif font-bold text-gray-dark text-right pb-0">"</h1>
         </div>
     </div>
 

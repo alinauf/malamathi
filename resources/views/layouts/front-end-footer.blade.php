@@ -2,8 +2,8 @@
 
     <div class="md:w-1/3 px-6 pb-6">
         <div class="flex my-6">
-            <img src="/addu_by_aishath_naj.png" alt="Intro Image" class="w-1/2 pr-1">
-            <div class="text-left my-4">
+            <img src="/brand/logo.svg" alt="Logo" class="w-1/2 pr-1">
+            <div class="text-left my-4 pl-2">
                 {{-- <h1 class="text-2xl my-4 font-serif font-bold text-gray-dark text-left pb-0">Contact Us</h1> --}}
                 <p>Malamathi project is funded and supported by GEF/UNDP Maldives.</p>
             </div>
