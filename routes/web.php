@@ -27,5 +27,9 @@ Route::get('case-reports/create', [CaseReportController::class, 'create'])->name
 Route::get('case-reports/{caseReport}', [CaseReportController::class, 'show'])->name('case-reports.show');
 Route::get('ecosystems', [EcosystemController::class, 'index'])->name('ecosystems');
 
+Route::post('case-report/submission', [CaseReportController::class, 'guestStore'])->name('case-reports.submission');
+
+
+
 require __DIR__ . '/backend-routes.php';
 
