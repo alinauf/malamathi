@@ -1,5 +1,5 @@
 <div x-data="{
-formValidationStatus:@entangle('formValidationStatus'),
+formValidationStatus:@entangle('formValidationStatus').live,
 }"
 
      class=""
@@ -33,7 +33,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="owner_name"
-                               wire:model="owner_name"
+                               wire:model.live="owner_name"
                                id="owner_name"
                                class="
                             @error('owner_name') border border-red-500 @enderror
@@ -54,7 +54,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="purpose"
-                               wire:model="purpose"
+                               wire:model.live="purpose"
                                id="purpose"
                                class="
                             @error('purpose') border border-red-500 @enderror
@@ -75,7 +75,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                          <textarea name="description"
-                                   wire:model="description"
+                                   wire:model.live="description"
                                    id="description" cols="5" rows="3" class="
                             @error('description') border border-red-500 @enderror
                         shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm

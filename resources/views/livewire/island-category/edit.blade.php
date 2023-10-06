@@ -1,5 +1,5 @@
 <div x-data="{
-formValidationStatus:@entangle('formValidationStatus'),
+formValidationStatus:@entangle('formValidationStatus').live,
 }"
 
      class=""
@@ -36,7 +36,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="name"
-                               wire:model="name"
+                               wire:model.live="name"
                                id="name"
                                class="
                             @error('name') border border-red-500 @enderror

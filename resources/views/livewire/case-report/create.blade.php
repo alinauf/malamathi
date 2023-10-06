@@ -1,5 +1,5 @@
 <div x-data="{
-formValidationStatus:@entangle('formValidationStatus'),
+formValidationStatus:@entangle('formValidationStatus').live,
 }"
 
      class=""
@@ -31,7 +31,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                         Atoll</label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <select id="atoll_id"
-                                wire:model="atoll_id"
+                                wire:model.live="atoll_id"
                                 name="atoll_id"
                                 class="block w-full rounded-md  @error('atoll_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select Atoll</option>
@@ -50,7 +50,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <select id="island_id"
-                                wire:model="island_id"
+                                wire:model.live="island_id"
                                 name="island_id"
                                 class="block w-full rounded-md  @error('island_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select Island</option>
@@ -70,7 +70,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <select id="ecosystem_id"
-                                wire:model="ecosystem_id"
+                                wire:model.live="ecosystem_id"
                                 name="ecosystem_id"
                                 class="block w-full rounded-md  @error('ecosystem_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select Ecosystem</option>
@@ -93,7 +93,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="title"
-                               wire:model="title"
+                               wire:model.live="title"
                                id="title"
                                class="
                             @error('title') border border-red-500 @enderror
@@ -114,7 +114,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                          <textarea name="statement"
-                                   wire:model="statement"
+                                   wire:model.live="statement"
                                    id="statement" cols="5" rows="3" class="
                             @error('statement') border border-red-500 @enderror
                         shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
@@ -137,7 +137,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="submitted_by"
-                               wire:model="submitted_by"
+                               wire:model.live="submitted_by"
                                id="submitted_by"
                                class="
                             @error('submitted_by') border border-red-500 @enderror
@@ -158,7 +158,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="phone"
-                               wire:model="phone"
+                               wire:model.live="phone"
                                id="phone"
                                class="
                             @error('phone') border border-red-500 @enderror
@@ -180,7 +180,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="email" name="email"
-                               wire:model="email"
+                               wire:model.live="email"
                                id="email"
                                class="
                             @error('email') border border-red-500 @enderror
@@ -202,7 +202,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="latitude"
-                               wire:model="latitude"
+                               wire:model.live="latitude"
                                id="latitude"
                                class="
                             @error('latitude') border border-red-500 @enderror
@@ -223,7 +223,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                      <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <input type="text" name="longitude"
-                               wire:model="longitude"
+                               wire:model.live="longitude"
                                id="longitude"
                                class="
                             @error('longitude') border border-red-500 @enderror

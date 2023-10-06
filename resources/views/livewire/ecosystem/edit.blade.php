@@ -1,5 +1,5 @@
 <div x-data="{
-formValidationStatus:@entangle('formValidationStatus'),
+formValidationStatus:@entangle('formValidationStatus').live,
 }"
 
      class=""
@@ -31,7 +31,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                         Atolls</label>
                     <div class="mt-2">
                         <select id="atoll_id"
-                                wire:model="atoll_id"
+                                wire:model.live="atoll_id"
                                 name="atoll_id"
                                 class="block w-full rounded-md  @error('atoll_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select Atoll</option>
@@ -50,7 +50,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                         Islands</label>
                     <div class="mt-2">
                         <select id="island_id"
-                                wire:model="island_id"
+                                wire:model.live="island_id"
                                 name="island_id"
                                 class="block w-full rounded-md  @error('island_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select Island</option>
@@ -72,7 +72,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="name"
-                               wire:model="name"
+                               wire:model.live="name"
                                id="name"
                                class="
                             @error('name') border border-red-500 @enderror
@@ -93,7 +93,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                          <textarea name="description"
-                                   wire:model="description"
+                                   wire:model.live="description"
                                    id="description" cols="5" rows="3" class="
                             @error('description') border border-red-500 @enderror
                         shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
@@ -115,7 +115,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="latitude"
-                               wire:model="latitude"
+                               wire:model.live="latitude"
                                id="latitude"
                                class="
                             @error('latitude') border border-red-500 @enderror
@@ -136,7 +136,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="longitude"
-                               wire:model="longitude"
+                               wire:model.live="longitude"
                                id="longitude"
                                class="
                             @error('longitude') border border-red-500 @enderror
@@ -159,7 +159,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                                 <input id="is_documented" name="is_documented" type="checkbox"
                                        @if($is_documented) checked @endif
                                        value="{{true}}"
-                                       wire:model="is_documented"
+                                       wire:model.live="is_documented"
                                        class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600">
                             </div>
                             <div class="text-sm leading-6">
@@ -184,7 +184,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                                 <input id="is_potentially_threatened" name="is_potentially_threatened" type="checkbox"
                                        @if($is_potentially_threatened) checked @endif
                                        value="{{true}}"
-                                       wire:model="is_potentially_threatened"
+                                       wire:model.live="is_potentially_threatened"
                                        class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600">
                             </div>
                             <div class="text-sm leading-6">
@@ -211,7 +211,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                                        @if($is_threatened) checked @endif
 
                                        value="{{true}}"
-                                       wire:model="is_threatened"
+                                       wire:model.live="is_threatened"
                                        class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600">
                             </div>
                             <div class="text-sm leading-6">
@@ -236,7 +236,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                                 <input id="is_destroyed" name="is_destroyed" type="checkbox"
                                        @if($is_destroyed) checked @endif
                                        value="{{true}}"
-                                       wire:model="is_destroyed"
+                                       wire:model.live="is_destroyed"
                                        class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600">
                             </div>
                             <div class="text-sm leading-6">

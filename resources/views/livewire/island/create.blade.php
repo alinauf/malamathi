@@ -1,5 +1,5 @@
 <div x-data="{
-formValidationStatus:@entangle('formValidationStatus'),
+formValidationStatus:@entangle('formValidationStatus').live,
 }"
 
      class=""
@@ -31,7 +31,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                         Atolls</label>
                     <div class="mt-2">
                         <select id="atoll_id"
-                                wire:model="atoll_id"
+                                wire:model.live="atoll_id"
                                 name="atoll_id"
                                 class="block w-full rounded-md  @error('atoll_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select Atolls</option>
@@ -51,7 +51,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                         Category</label>
                     <div class="mt-2">
                         <select id="island_category_id"
-                                wire:model="island_category_id"
+                                wire:model.live="island_category_id"
                                 name="island_category_id"
                                 class="block w-full rounded-md  @error('island_category_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select Island Category</option>
@@ -73,7 +73,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="name"
-                               wire:model="name"
+                               wire:model.live="name"
                                id="name"
                                class="
                             @error('name') border border-red-500 @enderror
@@ -95,7 +95,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="code"
-                               wire:model="code"
+                               wire:model.live="code"
                                id="code"
                                class="
                             @error('code') border border-red-500 @enderror
@@ -116,7 +116,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="latitude"
-                               wire:model="latitude"
+                               wire:model.live="latitude"
                                id="latitude"
                                class="
                             @error('latitude') border border-red-500 @enderror
@@ -137,7 +137,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="longitude"
-                               wire:model="longitude"
+                               wire:model.live="longitude"
                                id="longitude"
                                class="
                             @error('longitude') border border-red-500 @enderror

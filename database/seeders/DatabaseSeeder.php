@@ -54,15 +54,15 @@ class DatabaseSeeder extends Seeder
 
         // TODO: remove below code after proper data is seeded
 
-        PopulationEntry::factory()->count(1000)->create();
-        Zone::factory()->count(10)->create();
-        Plot::factory()->count(30)->create();
-        PlotUsage::factory()->count(100)->create();
-
-        Ecosystem::factory()->count(30)->create();
-
-        CaseReport::factory()->count(50)->create();
-        CaseReportLink::factory()->count(100)->create();
+//        PopulationEntry::factory()->count(1000)->create();
+//        Zone::factory()->count(10)->create();
+//        Plot::factory()->count(30)->create();
+//        PlotUsage::factory()->count(100)->create();
+//
+//        Ecosystem::factory()->count(30)->create();
+//
+//        CaseReport::factory()->count(50)->create();
+//        CaseReportLink::factory()->count(100)->create();
 
 
     }

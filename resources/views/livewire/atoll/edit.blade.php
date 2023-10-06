@@ -1,5 +1,5 @@
 <div x-data="{
-formValidationStatus:@entangle('formValidationStatus'),
+formValidationStatus:@entangle('formValidationStatus').live,
 }"
 
      class=""
@@ -35,7 +35,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="name"
-                               wire:model="name"
+                               wire:model.live="name"
                                id="name"
                                class="
                             @error('name') border border-red-500 @enderror
@@ -56,7 +56,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="code"
-                               wire:model="code"
+                               wire:model.live="code"
                                id="code"
                                class="
                             @error('code') border border-red-500 @enderror
@@ -79,7 +79,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                                 <input id="is_city" name="is_city" type="checkbox"
                                        @if($is_city) checked @endif
                                        value="{{true}}"
-                                       wire:model="is_city"
+                                       wire:model.live="is_city"
                                        class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600">
                             </div>
                             <div class="text-sm leading-6">

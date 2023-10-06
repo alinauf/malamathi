@@ -1,5 +1,5 @@
 <div x-data="{
-formValidationStatus:@entangle('formValidationStatus'),
+formValidationStatus:@entangle('formValidationStatus').live,
 }"
 
      class=""
@@ -32,7 +32,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                         Zone</label>
                     <div class="mt-2">
                         <select id="zone_id"
-                                wire:model="zone_id"
+                                wire:model.live="zone_id"
                                 name="zone_id"
                                 class="block w-full rounded-md  @error('zone_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select Zone</option>
@@ -54,7 +54,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                         <input type="text" name="name"
-                               wire:model="name"
+                               wire:model.live="name"
                                id="name"
                                class="
                             @error('name') border border-red-500 @enderror
@@ -75,7 +75,7 @@ formValidationStatus:@entangle('formValidationStatus'),
                     </label>
                     <div class="mt-1">
                          <textarea name="description"
-                                   wire:model="description"
+                                   wire:model.live="description"
                                    id="description" cols="5" rows="3" class="
                             @error('description') border border-red-500 @enderror
                         shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
