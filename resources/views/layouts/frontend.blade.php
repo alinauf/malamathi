@@ -28,7 +28,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
+    @mediaLibraryStyles
 
 </head>
 <body class="font-sans antialiased">
@@ -52,8 +52,7 @@
     @include('layouts.front-end-footer')
 </div>
 @stack('scripts')
-@livewireScripts
 
-
+@mediaLibraryScripts
 </body>
 </html>

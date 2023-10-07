@@ -33,3 +33,4 @@ Route::post('case-report/submission', [CaseReportController::class, 'guestStore'
 
 require __DIR__ . '/backend-routes.php';
 
+Route::mediaLibrary();

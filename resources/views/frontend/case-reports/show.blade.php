@@ -32,30 +32,24 @@
             <p class="mt-6 text-xl leading-8">
                 {{ $caseReport->statement}}
             </p>
-            <div class="mt-10 max-w-2xl">
-                <p>Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed
-                    amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius
-                    sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim.
-                    Mattis mauris semper sed amet vitae sed turpis id.</p>
-            </div>
-            <figure class="mt-16">
-                <img class="aspect-video rounded-xl bg-gray-50 object-cover"
-                     src="https://plus.unsplash.com/premium_photo-1666497934040-ec832d302f13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1940&q=80"
-                     alt="">
-                <figcaption class="mt-4 flex gap-x-2 text-sm leading-6 text-gray-500">
-                    <svg class="mt-0.5 h-5 w-5 flex-none text-gray-300" viewBox="0 0 20 20" fill="currentColor"
-                         aria-hidden="true">
-                        <path fill-rule="evenodd"
-                              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
-                              clip-rule="evenodd"/>
-                    </svg>
-                    Faucibus commodo massa rhoncus, volutpat.
-                </figcaption>
-            </figure>
 
-            <div class="mt-16">
-                <div id="map" class="h-80"></div>
-            </div>
+            @if($caseReport->getMedia('case-report-images')!=null && count($caseReport->getMedia('case-report-images')) )
+                @foreach($caseReport->getMedia('case-report-images') as $caseReportMedia)
+                    <figure class="mt-16">
+                        <img class="aspect-video rounded-xl bg-gray-50 object-cover"
+                             src="{{url($caseReportMedia->getUrl())}}"
+                             alt="">
+                    </figure>
+
+                @endforeach
+            @endif
+
+
+
+
+{{--            <div class="mt-16">--}}
+{{--                <div id="map" class="h-80"></div>--}}
+{{--            </div>--}}
 
         </div>
     </div>

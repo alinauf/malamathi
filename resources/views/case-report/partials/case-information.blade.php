@@ -171,6 +171,21 @@
                 </ul>
             </div>
 
+            <div class="sm:col-span-2">
+                <dt class="text-sm font-medium text-gray-500">
+                    Case Report Images and Videos
+                </dt>
+                <ul role="list" class="divide-y divide-gray-100">
+                    
+                        @if($caseReport->getMedia('case-report-images')!=null && count($caseReport->getMedia('case-report-images')) )
+                            @foreach($caseReport->getMedia('case-report-images') as $caseReportMedia)
+                                {{$caseReportMedia}}
+                            @endforeach
+                        @endif
+
+                </ul>
+            </div>
+
         </dl>
     </div>
 

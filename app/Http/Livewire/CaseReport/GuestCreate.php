@@ -6,9 +6,11 @@ use App\Models\Ecosystem;
 use App\Models\Island;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use  Spatie\MediaLibraryPro\Livewire\Concerns\WithMedia;
 
 class GuestCreate extends Component
 {
+    use WithMedia;
 
     public $atolls;
     public $islands;
@@ -29,6 +31,12 @@ class GuestCreate extends Component
     public $longitude;
 
     public $formValidationStatus;
+
+    public $uploads;
+
+
+    public $mediaComponentNames = ['uploads'];
+
 
     protected $rules = [
         'atoll_id' => 'required',

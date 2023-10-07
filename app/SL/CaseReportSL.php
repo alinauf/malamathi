@@ -57,6 +57,9 @@ class CaseReportSL extends SL
                 'is_verified' => false,
             ]);
 
+            $caseReport
+                ->addFromMediaLibraryRequest($data['uploads'])
+                ->toMediaCollection('case-report-images');
 
         } catch (\Exception $e) {
             DB::rollback();

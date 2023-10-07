@@ -56,6 +56,8 @@ class CaseReportController extends Controller
         $result = $caseReportSL->store($request->all());
 
 
+
+
         if ($result['status']) {
             return redirect('/')->with('success', $result['payload']);
         } else {
