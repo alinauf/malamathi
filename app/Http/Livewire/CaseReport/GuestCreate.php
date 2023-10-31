@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\CaseReport;
 
+use App\Models\Atoll;
 use App\Models\Ecosystem;
 use App\Models\Island;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,10 @@ class GuestCreate extends Component
     public $atoll_id;
     public $ecosystem_id;
 
+    public $island = null;
+    public $atoll = null;
+    public $ecosystem = null;
+
     public $title;
     public $statement;
 
@@ -31,6 +36,10 @@ class GuestCreate extends Component
     public $longitude;
 
     public $formValidationStatus;
+
+    public $form1;
+    public $form2;
+    public $form3;
 
     public $uploads;
 
@@ -69,12 +78,29 @@ class GuestCreate extends Component
         $this->atolls = \App\Models\Atoll::all();
         $this->ecosystems = \App\Models\Ecosystem::all();
 
+        $this->form1 = true;
+        $this->form2 = false;
+        $this->form3 = false;
     }
+
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
     }
+
+    public function updatedForm1Submitted($value)
+    {
+        $this->form1Submitted = $value;
+    }
+
+    public function showForm($form_no)
+    {
+        $this->form1 = ($form_no === 1);
+        $this->form2 = ($form_no === 2);
+        $this->form3 = ($form_no === 3);
+    }
+    
 
     public function updatedAtollId()
     {
@@ -83,6 +109,21 @@ class GuestCreate extends Component
 
         $this->ecosystem_id = null;
         $this->island_id = null;
+
+        $this->atoll = \App\Models\Atoll::find($this->atoll_id);
+        $this->island = null;
+        $this->ecosystem = null;
+    }
+
+    public function updatedEcosystemId()
+    {
+        $this->ecosystem = Ecosystem::find($this->ecosystem_id);
+        
+        $this->island = Island::find($this->ecosystem->island_id);
+        $this->island_id = $this->island->id;
+
+        $this->atoll = Atoll::find($this->ecosystem->atoll_id);
+        $this->atoll_id = $this->atoll->id;
     }
 
     public function updatedIslandId()
@@ -90,6 +131,10 @@ class GuestCreate extends Component
         $this->atoll_id = Island::find($this->island_id)->atoll_id;
         $this->ecosystems = Ecosystem::where('atoll_id', $this->atoll_id)->get();
         $this->ecosystem_id = null;
+
+        $this->island = Island::find($this->island_id);
+        $this->atoll = $this->island->atoll;
+        $this->ecosystem = null;
     }
 
     public function validateForm()

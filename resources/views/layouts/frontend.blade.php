@@ -53,6 +53,7 @@
 </div>
 @stack('scripts')
 
+
 @mediaLibraryScripts
 </body>
 </html>

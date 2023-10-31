@@ -12,6 +12,6 @@ class EcosystemSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        
     }
 }

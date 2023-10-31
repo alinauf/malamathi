@@ -1,5 +1,8 @@
 <div x-data="{
 formValidationStatus:@entangle('formValidationStatus').live,
+form1:@entangle('form1').live,
+form2:@entangle('form2').live,
+form3:@entangle('form3').live,
 }"
 
      class=""
@@ -8,231 +11,121 @@ formValidationStatus:@entangle('formValidationStatus').live,
      x-transition:enter-end="opacity-100 transform scale-100"
 >
 
+    <div class="lg:border-t lg:border-gray-200">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
+        <ol role="list" class="overflow-hidden rounded-md lg:flex lg:rounded-none lg:border-l lg:border-r lg:border-gray-200">
+            <li class="relative overflow-hidden lg:flex-1">
+            <div class="overflow-hidden border border-gray-200 rounded-t-md border-b-0 lg:border-0">
+                <!-- Completed Step -->
+                <a href="#" class="group step-link {{ $form1 ? 'form-selected' : '' }}" wire:click="showForm(1)">                    
+                    <span class="flex items-start px-6 py-5 text-sm font-medium lg:pl-9">
+                        <span class="flex-shrink-0">
+                        <span class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white">
+                            <span class="text-gray-700 step-count">1</span>
+                        </span>
+                        </span>
+                        <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
+                            <span class="text-sm font-bold text-blue-800">Case Details</span>
+                            <span class="text-sm font-medium text-blue-800">Penatibus eu quis ante.</span>
+                        </span>
+                    </span>
+                    </a>
+            </div>
+            </li>
+            <li class="relative overflow-hidden lg:flex-1">
+            <div class="overflow-hidden border border-gray-200 lg:border-0">
+                <!-- Current Step -->
+                <a href="#" class="group step-link {{ $form2 ? 'form-selected' : '' }}" wire:click="showForm(2)">                    
+                    
+                    <span class="flex items-start px-6 py-5 text-sm font-medium lg:pl-9">
+                        <span class="flex-shrink-0">
+                        <span class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white">
+                            <span class="text-gray-700 step-count">2</span>
+                        </span>
+                        </span>
+                        <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
+                        <span class="text-sm font-bold text-blue-800">Personal Information</span>
+                        <span class="text-sm font-medium text-blue-800">Penatibus eu quis ante.</span>
+                        </span>
+                    </span>
+                    </a>
+                <!-- Separator -->
+                <div class="absolute inset-0 left-0 top-0 hidden w-3 lg:block" aria-hidden="true">
+                <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+                    <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+                </svg>
+                </div>
+            </div>
+            </li>
+            <li class="relative overflow-hidden lg:flex-1">
+            <div class="overflow-hidden border border-gray-200 rounded-b-md border-t-0 lg:border-0">
+                <!-- Upcoming Step -->
+                <a href="#" class="group step-link {{ $form3 ? 'form-selected' : '' }}" wire:click="showForm(3)">                    
+                
+                <span class="flex items-start px-6 py-5 text-sm font-medium lg:pl-9">
+                    <span class="flex-shrink-0">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white">
+                        <span class="text-gray-700 step-count">3</span>
+                    </span>
+                    </span>
+                    <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
+                        <span class="text-sm font-bold text-blue-800">Review & Submit</span>
+                        <span class="text-sm font-medium text-blue-800">Penatibus eu quis ante.</span>
+                    </span>
+                </span>
+                </a>
+                <!-- Separator -->
+                <div class="absolute inset-0 left-0 top-0 hidden w-3 lg:block" aria-hidden="true">
+                <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
+                    <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vector-effect="non-scaling-stroke" />
+                </svg>
+                </div>
+            </div>
+            </li>
+        </ol>
+        </nav>
+    </div>
+    
+    
 
-    <form action="{{url("case-report/submission")}}" method="POST">
+    <div class="mx-auto max-w-7xl px-4 my-6 sm:px-6 lg:px-8">
+        <form action="{{url("case-report/submission")}}" method="POST">
         @csrf
 
-        <div class="space-y-12 sm:space-y-16">
-            <div>
-                <h2 class="text-base font-semibold leading-7 text-gray-900">Case Details</h2>
-                <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
-                    Enter the details of the case report
-                </p>
+          <div id="part1" class="form-part {{ $form1 ? 'block' : 'hidden' }}" >
 
-                <div class="mt-10 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="atoll_id" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                            Atoll</label>
-                        <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <select id="atoll_id"
-                                    wire:model.live="atoll_id"
-                                    name="atoll_id"
-                                    class="block w-full rounded-md  @error('atoll_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                <option value="">Select Atoll</option>
-                                @foreach($atolls as $atoll)
-                                    <option value="{{$atoll->id}}">{{$atoll->name}}</option>
-                                @endforeach
-                            </select>
+            @include('livewire.case-report.guest-form.form')
+          </div>
 
-                            @error('atoll_id')
-                            <p class="mt-2 text-sm text-red-600">{{$message}}</p>
-                            @enderror
-                        </div>
-                    </div>
+          <div id="part2" class="form-part {{ $form2 ? 'block' : 'hidden' }}" >
 
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="island_id" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                            Island</label>
-                        <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <select id="island_id"
-                                    wire:model.live="island_id"
-                                    name="island_id"
-                                    class="block w-full rounded-md  @error('island_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                <option value="">Select Island</option>
-                                @foreach($islands as $island)
-                                    <option value="{{$island->id}}">{{$island->name}}</option>
-                                @endforeach
-                            </select>
+            @include('livewire.case-report.guest-form.details')
+          </div>
 
-                            @error('island_id')
-                            <p class="mt-2 text-sm text-red-600">{{$message}}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="ecosystem_id" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Ecosystem
-                        </label>
-                        <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <select id="ecosystem_id"
-                                    wire:model.live="ecosystem_id"
-                                    name="ecosystem_id"
-                                    class="block w-full rounded-md  @error('ecosystem_id') border border-red-500 @enderror border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                <option value="">Select Ecosystem</option>
-                                @foreach($ecosystems as $ecosystem)
-                                    <option value="{{$ecosystem->id}}">{{$ecosystem->name}}</option>
-                                @endforeach
-                            </select>
-
-                            @error('ecosystem_id')
-                            <p class="mt-2 text-sm text-red-600">{{$message}}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    {{-- Title--}}
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="title" class="block text-sm font-medium text-gray-700"
-                        >
-                            Title <span class="text-red-900">*</span>
-                        </label>
-                        <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <input type="text" name="title"
-                                   wire:model.live="title"
-                                   id="title"
-                                   class="
-                            @error('title') border border-red-500 @enderror
-                                   shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
-                                   border-gray-300 rounded-md">
-
-                            @error('title')
-                            <p class="mt-2 text-sm text-red-600">{{$message}}</p>
-                            @enderror
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="statement"
-                               class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Summary</label>
-                        <div class="mt-2 sm:col-span-2 sm:mt-0">
-                                <textarea name="statement"
-                                          wire:model.live="statement"
-                                          id="statement" rows="3"
-                                          class="
-                                           @error('statement') border border-red-500 @enderror
-                                          block w-full max-w-2xl rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"></textarea>
-                            <p class="mt-3 text-sm leading-6 text-gray-600">
-                                Write a summary regarding the case report.
-                            </p>
-
-                            @error('statement')
-                            <p class="mt-2 text-sm text-red-600">{{$message}}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="cover-photo"
-                               class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                            Photos or Video
-                            </label>
-                        <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <x-media-library-attachment multiple name="uploads" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-                <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
-                    You can skip this section if you'd like to be anonymous.
-                </p>
-
-                <div class="mt-10 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
-
-                    {{-- Submitted By--}}
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="submitted_by" class="block text-sm font-medium text-gray-700"
-                        >
-                            Submitted By
-                        </label>
-                        <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <input type="text" name="submitted_by"
-                                   wire:model.live="submitted_by"
-                                   id="submitted_by"
-                                   class="
-                            @error('submitted_by') border border-red-500 @enderror
-                                   shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
-                                   border-gray-300 rounded-md">
-                        </div>
-
-                        @error('submitted_by')
-                        <p class="mt-2 text-sm text-red-600">{{$message}}</p>
-                        @enderror
-                    </div>
-
-
-
-                    {{-- Phone--}}
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="phone" class="block text-sm font-medium text-gray-700"
-                        >
-                            Phone
-                        </label>
-                        <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <input type="text" name="phone"
-                                   wire:model.live="phone"
-                                   id="phone"
-                                   class="
-                            @error('phone') border border-red-500 @enderror
-                                   shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
-                                   border-gray-300 rounded-md">
-                        </div>
-
-                        @error('phone')
-                        <p class="mt-2 text-sm text-red-600">{{$message}}</p>
-                        @enderror
-                    </div>
-
-
-                    {{-- Email--}}
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                        <label for="email" class="block text-sm font-medium text-gray-700"
-                        >
-                            Email
-                        </label>
-                        <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <input type="email" name="email"
-                                   wire:model.live="email"
-                                   id="email"
-                                   class="
-                            @error('email') border border-red-500 @enderror
-                                   shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
-                                   border-gray-300 rounded-md">
-                        </div>
-
-                        @error('email')
-                        <p class="mt-2 text-sm text-red-600">{{$message}}</p>
-                        @enderror
-                    </div>
-
-
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="mt-8 text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-            <div class="mt-8 flex justify-end">
-                <button wire:click="validateForm" type="button"
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Save
-                </button>
-            </div>
+          <div id="part3" class="form-part {{ $form3 ? 'block' : 'hidden' }}" >
+            @include('livewire.case-report.guest-form.confirm')
+          </div>
 
 
             <x-confirm-create-modal title="Are you sure"
                                     subtitle="Please confirm if you would like to create the case report"/>
-        </div>
     </form>
+    </div>
+
+    <style>
+        .form-selected > span > span > span {
+            color: rgb(0, 76, 148);
+        }
+        .form-selected  > span > span > span > .step-count{
+            color: rgb(0, 76, 148)        
+        }
+        .step-count {
+            border-color: rgba(0, 76, 148, 0.7);
+            font-weight: 600;
+            font-size: 1.3em;
+        }
+        </style>
+
 
 </div>
 
