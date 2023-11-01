@@ -4,18 +4,58 @@
     <div class="flex flex-col md:flex-row py-5 my-5 text-left max-w gap-6">
         <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded min-h-[80vh]">
                 <h1 class="text-xl my-4 font-serif text-gray-dark text-left pb-0 pt-3">
-                    <small>Title:</small><br>
+                    <small>Case:</small><br>
                     <b>{{  $caseReport->title  }}</b>
                     <br>
                  </h1>
+
                 <p class="text-lg min-h-max">
+
+                    @isset($caseReport->ecosystem)
                     <br>
                     Ecosystem: <b>{{  isset($caseReport->ecosystem) ? $caseReport->ecosystem->name : '-'  }}</b>
+                    @endisset
+
                     <br>
                     Island: <b>{{  isset($caseReport->island) ? $caseReport->island->name : '-'  }}</b>
                     <br>
                     Atoll: <b>{{  isset($caseReport->atoll) ? $caseReport->atoll->name : '-'  }}</b>
+
                 </p>
+
+
+
+
+            @php
+            $latitude = $caseReport->latitude;
+            $longitude = $caseReport->longitude;
+            @endphp
+            @if(isset($latitude) && isset($longitude))
+
+                <div class="mt-6">
+                        <div id="map" class="min-h-[40vh] md:min-h-[65vh] rounded"></div>
+                </div>
+
+            <style>
+                .leaflet-control-attribution{
+                  display:none!important;
+                }
+            </style>
+            <script >
+                const latitude = @json($latitude);
+                const longitude = @json($longitude);
+                const map = L.map('map').setView([latitude, longitude], 14);
+
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+                const marker = L.marker([latitude, longitude]).addTo(map);
+            </script>
+            @else
+            <p class="text-gray-500">No location available</p>
+            @endif
+
         </div>
         <div class="md:w-3/4 px-6 pb-6 rounded">
 
@@ -37,7 +77,7 @@
                 @if($caseReport->getMedia('case-report-images') != null && count($caseReport->getMedia('case-report-images')))
                     @foreach($caseReport->getMedia('case-report-images') as $caseReportMedia)
                         <a href="{{ url($caseReportMedia->getUrl()) }}" class="flex m-2">
-                            <img class="aspect-video rounded-xl bg-gray-50 object-cover hover:scale-110 transition-all duration-300"
+                            <img class="aspect-video rounded bg-gray-50 object-cover hover:scale-110 transition-all duration-300"
                                     src="{{ url($caseReportMedia->getUrl()) }}"
                                     alt=""
                                     style="width:200px; height:200px; object-fit: cover; object-position: center; "
@@ -48,13 +88,6 @@
             </ul>
 
 
-
-
-            @php
-            $latitude = $caseReport->latitude;
-            $longitude = $caseReport->longitude;
-            @endphp
-            @include('components.show-single-location')
 
         </div>
     </div>
