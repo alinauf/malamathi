@@ -113,16 +113,33 @@
                             </div>
                         </div>
     
-    
+
                         <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                             <label for="cover-photo"
                                    class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                                Photos or Video
+                                Location
+
+                                <p class="my-4 text-xs font-mono text-gray-400">
+                                     LAT: {{ $latitude }}<br> LON: {{ $longitude }}</p>
+                                <input type="hidden" name="latitude" wire:model="latitude">
+                                <input type="hidden" name="longitude" wire:model="longitude">
                                 </label>
                             <div class="mt-2 sm:col-span-2 sm:mt-0">
-                                <x-media-library-attachment multiple name="uploads" />
+                                <div id="map" style="height: 20rem" class="rounded-lg" wire:ignore></div>
                             </div>
                         </div>
+
+                        @if(env('HCAPTCHA_ENABLED')==true)
+                        <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                            <label for="cover-photo"
+                                   class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                Security
+                                </label>
+                            <div class="mt-2 sm:col-span-2 sm:mt-0">
+                                <div wire:ignore id="captcha" class="h-captcha"></div>
+                            </div>
+                        </div>
+                        @endif
 
                         
                     </div>
@@ -133,7 +150,7 @@
             </div>
     
             <div class="mt-6 flex items-center justify-end gap-x-6">
-                <div class="mt-0 flex justify-end">
+                <div class="mt-0 flex justify-end {{ $captchaPassed ? 'block' : 'hidden' }}">
                     <a href="#" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-blue-400 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
                             step-link" wire:click="showForm(2)">
                         Next
@@ -141,4 +158,47 @@
                 </div>
             </div>
     
-    
+            <script src='https://js.hcaptcha.com/1/api.js?onload=handle&render=explicit' async defer></script>
+
+            @push('scripts')
+            <script>
+                latitude = {{ $latitude }};
+                longitude = {{ $longitude }};
+                const map = L.map('map').setView([latitude, longitude], 7);
+
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+
+                let marker = new L.Marker([latitude, longitude]).addTo(map);
+
+                map.on('click', function(e) {
+                    if(marker) {
+                        map.removeLayer(marker);
+                    }
+                    marker = new L.Marker(e.latlng).addTo(map);
+                    @this.set('latitude', e.latlng.lat);
+                    @this.set('longitude', e.latlng.lng);
+                });
+
+                //watch for the h-captcha-response change and log it 
+                var  handle = function(e) {
+                    widget = grecaptcha.render('captcha', {
+                        'sitekey': '{{ env('HCAPTCHA_SITEKEY') }}',
+                        'theme': 'light', 
+                        'callback': verify
+                    });
+                
+                }
+                var verify = function (response) {
+                    @this.set('captcha', response)
+                }
+            </script>
+            @endpush
+
+            <style>
+                .leaflet-control-attribution{
+                  display:none!important;
+                }
+            </style>

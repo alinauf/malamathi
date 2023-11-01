@@ -2,7 +2,7 @@
   
     <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
         <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded">
-                <h1 class="text-xl my-4 font-serif text-gray-dark text-left pb-0 pt-3">Preserving Natural Beauty of Maldives, Together</h1>
+                <h1 class="text-2xl my-8 tracking-tight font-bold font-serif text-gray-dark text-left text-blue-800">Preserving Natural Beauty of Maldives, Together</h1>
         </div>
         <div class="md:w-3/4 px-6 pb-6 bg-gray-50 rounded">
             <p class="lead text-justify">
@@ -26,63 +26,6 @@
 
             </p>
         </div>
-
   </div>
   
 </div>
-
-<style>
-  .introimage-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .introimage {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .introimage img {
-    width: 100%;
-    display: block;
-  }
-
-  .introimage:before{
-    content:'';
-    position:absolute;
-    top:0;
-    left:0;
-    width:150px;
-    height:100%;
-    border-left:2px solid rgba(255,255,255,0.7);
-    border-right:2px solid rgba(255,255,255,0.7);
-    background:url('/addu_by_aishath_naj.png');
-    background-attachment:fixed;
-    background-position:bottom;
-    background-repeat:no-repeat;
-    background-size: 100% 100%;
-    box-shadow:20px 0 100px rgba(0,0,0,0.2),
-                -20px 0 100px rgba(0,0,0,0.2);
-    background-size:110%;
-    animation: slideAnimate 10s ease-in-out infinite; 
-  }
-
-  /**if screen size is mobile then introimage:before width will be 100px */
-    @media only screen and (max-width: 600px) {
-        .introimage:before{
-            width:100px !important;
-        }
-    }
-
-@keyframes slideAnimate{
-  0%,100%{
-    left:0px;
-  }
-  
-  50%{
-    left:calc(100%);
-  }
-}
-</style>

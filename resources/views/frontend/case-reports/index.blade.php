@@ -2,15 +2,15 @@
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
 
         <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
+
             <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded">
-                <h1 class="text-2xl my-4 font-serif text-bold text-gray-900 text-left pb-0 pt-3">Case Reports</h1>
+                <h1 class="text-2xl my-8 tracking-tight font-bold font-serif text-gray-dark text-left text-blue-800">
+                    Case Reports</h1>
                 <p class="mt-2 text-lg leading-8 text-gray-600">
-                    Here are the latest case reports submitted
+                    These are the latest case reports submitted
                 </p>
                 <p class="text-lg">
                     {{-- Stats: --}}
-
-
                 </p>
             </div>
 

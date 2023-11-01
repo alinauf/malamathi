@@ -5,9 +5,10 @@ namespace App\Http\Livewire\CaseReport;
 use App\Models\Atoll;
 use App\Models\Ecosystem;
 use App\Models\Island;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use  Spatie\MediaLibraryPro\Livewire\Concerns\WithMedia;
+use Illuminate\Support\Facades\Validator;
+use App\Rules\CaptchaValidationRule;
 
 class GuestCreate extends Component
 {
@@ -46,6 +47,8 @@ class GuestCreate extends Component
 
     public $mediaComponentNames = ['uploads'];
 
+    public $captcha = null;
+    public $captchaPassed = false;
 
     protected $rules = [
         'atoll_id' => 'required',
@@ -73,6 +76,10 @@ class GuestCreate extends Component
 
     public function mount()
     {
+        if(env('HCAPTCHA_ENABLED') !== true) {
+            $this->captchaPassed = true;
+        }
+
         $this->formValidationStatus = false;
         $this->islands = \App\Models\Island::all();
         $this->atolls = \App\Models\Atoll::all();
@@ -81,6 +88,10 @@ class GuestCreate extends Component
         $this->form1 = true;
         $this->form2 = false;
         $this->form3 = false;
+
+        $this->latitude = 3.2028;
+        $this->longitude = 73.2207;
+
     }
 
 
@@ -92,6 +103,22 @@ class GuestCreate extends Component
     public function updatedForm1Submitted($value)
     {
         $this->form1Submitted = $value;
+    }
+
+    public function updatedCaptcha($value)
+    {
+        //validate the $value against the captcha rule
+        $validator = Validator::make(
+            ['captcha' => $value],
+            ['captcha' => ['required', new CaptchaValidationRule()]]
+        );
+
+        //if validation fails, set captchaPassed to false
+        if ($validator->fails()) {
+            $this->captchaPassed = false;
+        } else {
+            $this->captchaPassed = true;
+        }
     }
 
     public function showForm($form_no)
@@ -135,6 +162,16 @@ class GuestCreate extends Component
         $this->island = Island::find($this->island_id);
         $this->atoll = $this->island->atoll;
         $this->ecosystem = null;
+
+        //if island lat and long is not null, set lat and long to island lat and long
+        if ($this->island->latitude != null && $this->island->longitude != null) {
+            $this->latitude = $this->island->latitude;
+            $this->longitude = $this->island->longitude;
+
+            //call the function to update the map
+            //todo this is not updating the map
+            // $this->dispatch('dispatch', latitude:$this->latitude, longitude:$this->longitude);
+        }
     }
 
     public function validateForm()

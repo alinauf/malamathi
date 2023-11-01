@@ -2,6 +2,27 @@
             <div class="space-y-12 sm:space-y-16">
     
                 <div>
+
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">Documentation</h2>
+                    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
+                        Please provide any photos or videos related to this case.
+                    </p>
+    
+                    <div class="mt-5 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
+
+                        <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                            <label for="cover-photo"
+                                   class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                Photos or Video
+                                </label>
+                            <div class="mt-2 sm:col-span-2 sm:mt-0">
+                                <x-media-library-attachment multiple name="uploads" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
                     <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
                         You can skip this section if you'd like to be anonymous.
@@ -101,4 +122,3 @@
     
             </div>
     
-

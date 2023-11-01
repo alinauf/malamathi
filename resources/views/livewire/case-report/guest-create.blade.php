@@ -3,6 +3,8 @@ formValidationStatus:@entangle('formValidationStatus').live,
 form1:@entangle('form1').live,
 form2:@entangle('form2').live,
 form3:@entangle('form3').live,
+latitude:@entangle('latitude').live,
+longitude:@entangle('longitude').live,
 }"
 
      class=""
@@ -26,7 +28,7 @@ form3:@entangle('form3').live,
                         </span>
                         <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
                             <span class="text-sm font-bold text-blue-800">Case Details</span>
-                            <span class="text-sm font-medium text-blue-800">Penatibus eu quis ante.</span>
+                            <span class="text-sm font-medium text-blue-800">Essentials required for case</span>
                         </span>
                     </span>
                     </a>
@@ -44,8 +46,8 @@ form3:@entangle('form3').live,
                         </span>
                         </span>
                         <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
-                        <span class="text-sm font-bold text-blue-800">Personal Information</span>
-                        <span class="text-sm font-medium text-blue-800">Penatibus eu quis ante.</span>
+                        <span class="text-sm font-bold text-blue-800">Supporting Information</span>
+                        <span class="text-sm font-medium text-blue-800">Optional information</span>
                         </span>
                     </span>
                     </a>
@@ -124,7 +126,7 @@ form3:@entangle('form3').live,
             font-weight: 600;
             font-size: 1.3em;
         }
-        </style>
+    </style>
 
 
 </div>
