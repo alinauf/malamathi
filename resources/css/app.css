@@ -1,4 +1,4 @@
-/*@import 'leaflet/dist/leaflet.css';*/
+@import 'baguettebox.js/dist/baguetteBox.min.css';
 @import "../../vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-styles";
 @tailwind base;
 @tailwind components;
@@ -8,4 +8,8 @@
 /**hide scrollbar**/
 ::-webkit-scrollbar {
     display: none !important;
+}
+
+.full-image>figure>img {
+    border-radius: 10px;
 }

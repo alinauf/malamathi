@@ -24,17 +24,21 @@
 
     </div>
 
-    @push('scripts')
-        <script >
-            const latitude = @json($latitude);
-            const longitude = @json($longitude);
-            const map = L.map('map').setView([latitude, longitude], 13);
+    @if(isset($latitude) && isset($longitude))
 
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-            }).addTo(map);
-            const marker = L.marker([latitude, longitude]).addTo(map);
-        </script>
-    @endpush
+        @push('scripts')
+            <script >
+                const latitude = @json($latitude);
+                const longitude = @json($longitude);
+                const map = L.map('map').setView([latitude, longitude], 13);
+
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+                const marker = L.marker([latitude, longitude]).addTo(map);
+            </script>
+        @endpush
+
+    @endif
 </div>

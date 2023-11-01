@@ -43,6 +43,7 @@ class GuestCreate extends Component
     public $form3;
 
     public $uploads;
+    public $uploadedItems;
 
 
     public $mediaComponentNames = ['uploads'];
@@ -99,6 +100,7 @@ class GuestCreate extends Component
     {
         $this->validateOnly($propertyName);
     }
+
 
     public function updatedForm1Submitted($value)
     {

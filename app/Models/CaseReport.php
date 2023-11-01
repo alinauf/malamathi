@@ -47,5 +47,6 @@ class CaseReport extends Model implements HasMedia
     {
         return $this->hasMany(CaseReportLink::class);
     }
+    
 
 }

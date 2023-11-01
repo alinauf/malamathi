@@ -8,7 +8,6 @@ use App\Models\CaseReportLink;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-
 class CaseReportSL extends SL
 {
     public function __construct()

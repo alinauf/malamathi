@@ -36,6 +36,11 @@
                                     Island
                                 </th>
 
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 ">
+                                    Submitted On
+                                </th>
+                                
+
                                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                     <span class="sr-only">Manage</span>
                                 </th>
@@ -57,6 +62,12 @@
                                     <td class=" px-3 py-4 text-sm text-gray-500 text-ellipsis overflow-hidden">
                                         <a href="{{url("island/".$caseReport["island_id"])}}">
                                             {{$caseReport->island->name}}
+                                        </a>
+                                    </td>
+
+                                    <td class=" px-3 py-4 text-sm text-gray-500 text-ellipsis overflow-hidden">
+                                        <a href="{{url("island/".$caseReport["island_id"])}}">
+                                            {{$caseReport->created_at->format("d M Y, h:i A")}}
                                         </a>
                                     </td>
 

@@ -32,9 +32,9 @@
 
 </head>
 <body class="font-sans antialiased">
-<div class="min-h-screen bg-white">
+<div class="min-h-screen flex flex-col bg-white">
     @include('layouts.front-end-navigation')
-
+    
     <!-- Page Heading -->
     @if (isset($header))
         <header class="bg-white shadow">
