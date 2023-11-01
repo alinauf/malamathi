@@ -1,6 +1,6 @@
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
 
-    <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
+    <div class="flex flex-col md:flex-row py-5 my-5 text-left max-w gap-6">
         <div class="md:w-2/3 ">
         <div class="introimage-container rounded">
         <div class="introimage">
@@ -30,7 +30,7 @@
 
     </div>
 
-    <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
+    <div class="flex flex-col md:flex-row py-5 my-5 text-left max-w gap-6">
         <div class="md:w-2/3 px-6 pb-6 bg-blue-50 rounded">
             <h1 class="text-2xl my-4 mt-5 font-serif font-bold text-gray-900 text-left pb-0">Our Mission</h1>
             <p class="lead">To protect, preserve and pass it to the next generation we need to know what’s out there and what changes are occurring to its ecosystems due to climate change and other factors! The aim of Malamathi is to empower communities and individuals to take part in documenting the ecosystems of Maldives. Share with us and take part in this community effort to document the Maldives and changes to its ecosystems over time!</p>

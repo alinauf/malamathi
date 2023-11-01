@@ -1,4 +1,4 @@
-  <div class="mt-auto mx-auto flex flex-col md:flex-row max-w-7xl px-2 sm:px-6 lg:px-8">
+  <div class="mt-auto mx-auto flex flex-col md:flex-row max-w-8xl px-2 sm:px-6 lg:px-8">
 
     <div class="md:w-1/3 px-6 pb-6">
         <div class="flex my-6">
@@ -36,7 +36,7 @@
 
     <div class="md:w-1/3 px-6 pb-6">
         <div class="flex my-6">
-            <img src="/img/sgp.png" alt="Intro Image" class="w-1/2 pr-1">
+            <img src="/img/sgp.png" alt="Intro Image" class="w-64 md:w-auto">
         </div>
     </div>
 

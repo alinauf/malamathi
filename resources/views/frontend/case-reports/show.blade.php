@@ -1,14 +1,14 @@
 <x-frontend-layout>
-<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 min-h-screen">
 
-    <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
-        <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded">
+    <div class="flex flex-col md:flex-row py-5 my-5 text-left max-w gap-6">
+        <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded min-h-[80vh]">
                 <h1 class="text-xl my-4 font-serif text-gray-dark text-left pb-0 pt-3">
                     <small>Title:</small><br>
                     <b>{{  $caseReport->title  }}</b>
                     <br>
                  </h1>
-                <p class="text-lg">
+                <p class="text-lg min-h-max">
                     <br>
                     Ecosystem: <b>{{  isset($caseReport->ecosystem) ? $caseReport->ecosystem->name : '-'  }}</b>
                     <br>
@@ -17,7 +17,7 @@
                     Atoll: <b>{{  isset($caseReport->atoll) ? $caseReport->atoll->name : '-'  }}</b>
                 </p>
         </div>
-        <div class="md:w-3/4 px-6 pb-6 bg-gray-50 rounded">
+        <div class="md:w-3/4 px-6 pb-6 rounded">
 
             @php
                 $latitude = $caseReport->latitude;
@@ -50,9 +50,11 @@
 
 
 
-{{--            <div class="mt-16">--}}
-{{--                <div id="map" class="h-80"></div>--}}
-{{--            </div>--}}
+            @php
+            $latitude = $caseReport->latitude;
+            $longitude = $caseReport->longitude;
+            @endphp
+            @include('components.show-single-location')
 
         </div>
     </div>
@@ -79,7 +81,6 @@
                             <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                                 <a href="#">
                                     <span class="absolute inset-0"></span>
-{{--                                    Boost your conversion rate--}}
                                 </a>
                             </h3>
                             <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
@@ -90,25 +91,11 @@
                     </article>
 
                 @endforeach
-                <!-- More posts... -->
             </div>
         </div>
     </div>
     @endif
 
 </div>
-    @push('scripts')
-        <script>
-            const latitude = @json($latitude);
-            const longitude = @json($longitude);
-            const map = L.map('map').setView([latitude, longitude], 13);
-
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-            }).addTo(map);
-            const marker = L.marker([latitude, longitude]).addTo(map);
-        </script>
-    @endpush
 
 </x-frontend-layout>

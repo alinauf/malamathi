@@ -75,8 +75,8 @@ class Edit extends Component
         $this->phone = $caseReport->phone;
         $this->email = $caseReport->email;
 
-        $this->latitude = $caseReport->latitude;
-        $this->longitude = $caseReport->longitude;
+        $this->latitude = $caseReport->latitude ??  3.2028;
+        $this->longitude = $caseReport->longitude ?? 73.2207;
     }
 
     public function updated($propertyName)

@@ -126,4 +126,10 @@
         </script>
     @endpush
 
+    <style>
+        .leaflet-control-attribution{
+          display:none!important;
+        }
+    </style>
+
 </x-frontend-layout>

@@ -8,19 +8,14 @@
         </h3>
     </div>
     <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
-        {{--        @if(isset($latitude) && isset($longitude))--}}
+
         <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
 
             <div class="sm:col-span-2">
-                <div>
-                    <div id="map" style="height: 60rem"></div>
-                </div>
+                <div id="map" style="height: 60rem; border-radius: 10px;"></div>
             </div>
 
         </dl>
-        {{--        @else--}}
-        {{--            <p class="text-gray-500">No location available</p>--}}
-        {{--        @endif--}}
 
     </div>
 
@@ -50,4 +45,10 @@
 
         </script>
     @endpush
+
+    <style>
+        .leaflet-control-attribution{
+          display:none!important;
+        }
+    </style>
 </div>

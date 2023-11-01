@@ -1,20 +1,22 @@
 <div x-data="" class="">
+    
     @push('styles')
 
     @endpush
-    <div class=" pb-5 flex justify-between">
+    
+    <div class="py-4 flex justify-between">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
             Location
         </h3>
     </div>
-    <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
+
+    <div class="border-t border-gray-200 py-5 sm:px-6">
+
         @if(isset($latitude) && isset($longitude))
             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
 
                 <div class="sm:col-span-2">
-                    <div>
-                        <div id="map" class="h-80"></div>
-                    </div>
+                    <div id="map" style="height: 60rem; border-radius: 10px;"></div>
                 </div>
 
             </dl>
@@ -39,6 +41,12 @@
                 const marker = L.marker([latitude, longitude]).addTo(map);
             </script>
         @endpush
+
+        <style>
+            .leaflet-control-attribution{
+              display:none!important;
+            }
+        </style>
 
     @endif
 </div>

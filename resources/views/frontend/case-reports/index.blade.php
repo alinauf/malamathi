@@ -1,9 +1,8 @@
 <x-frontend-layout>
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 min-h-screen">
 
-        <div class="flex flex-col md:flex-row py-5 m-5 text-left max-w gap-6">
-
-            <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded">
+        <div class="flex flex-col md:flex-row py-5 my-5 text-left max-w gap-6">
+            <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded min-h-[80vh]">
                 <h1 class="text-2xl my-8 tracking-tight font-bold font-serif text-gray-dark text-left text-blue-800">
                     Case Reports</h1>
                 <p class="mt-2 text-lg leading-8 text-gray-600">
@@ -19,7 +18,7 @@
 
                     <a class="" href="{{url("/case-reports/$case->id")}}">
 
-                        <article class="mt-2 relative isolate flex flex-col gap-8 lg:flex-row">
+                        <article class="mb-2 relative isolate flex flex-col gap-8 lg:flex-row">
                             <div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
 
                                     <?php
@@ -32,8 +31,8 @@
                                     ?>
 
                                 <img src="{{$imageURL}}"
-                                     alt="" class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover">
-                                <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+                                     alt="" class="absolute inset-0 h-full w-full rounded bg-gray-50 object-cover">
+                                <div class="absolute inset-0 rounded ring-1 ring-inset ring-gray-900/10"></div>
                             </div>
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
