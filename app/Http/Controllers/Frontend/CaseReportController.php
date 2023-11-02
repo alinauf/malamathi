@@ -59,10 +59,15 @@ class CaseReportController extends Controller
 
 
         if ($result['status']) {
-            return redirect('/')->with('success', $result['payload']);
+            return redirect('/case-report/thank-you')->with('success', $result['payload']);
         } else {
             return redirect()->back()->with('errors', $result['payload']);
         }
+    }
+
+    public function guestThanks()
+    {
+        return view('frontend.case-reports.thank-you');
     }
 
 }

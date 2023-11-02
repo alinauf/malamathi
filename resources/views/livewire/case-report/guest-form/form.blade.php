@@ -121,8 +121,8 @@
 
                                 <p class="my-4 text-xs font-mono text-gray-400">
                                      LAT: {{ $latitude }}<br> LON: {{ $longitude }}</p>
-                                <input type="hidden" name="latitude" wire:model="latitude">
-                                <input type="hidden" name="longitude" wire:model="longitude">
+                                <input type="hidden" name="latitude" value="{{ $latitude }}">
+                                <input type="hidden" name="longitude"value="{{ $longitude }}">
                                 </label>
                             <div class="mt-2 sm:col-span-2 sm:mt-0">
                                 <div id="map" style="height: 20rem" class="rounded-lg" wire:ignore></div>

@@ -27,6 +27,7 @@ Route::get('case-reports/create', [CaseReportController::class, 'create'])->name
 Route::get('case-reports/{caseReport}', [CaseReportController::class, 'show'])->name('case-reports.show');
 Route::get('ecosystems', [EcosystemController::class, 'index'])->name('ecosystems');
 
+Route::get('case-report/thank-you', [CaseReportController::class, 'guestThanks'])->name('case-reports.thank-you');
 Route::post('case-report/submission', [CaseReportController::class, 'guestStore'])->name('case-reports.submission');
 
 

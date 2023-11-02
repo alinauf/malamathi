@@ -12,11 +12,11 @@
 
     <div class="border-t border-gray-200 py-5 sm:px-6">
 
-        @if(isset($latitude) && isset($longitude))
+        @if(!is_null($latitude) && !is_null($longitude))
             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
 
                 <div class="sm:col-span-2">
-                    <div id="map" style="height: 60rem; border-radius: 10px;"></div>
+                    <div id="map" style="height: 20rem; border-radius: 10px;"></div>
                 </div>
 
             </dl>
@@ -26,7 +26,7 @@
 
     </div>
 
-    @if(isset($latitude) && isset($longitude))
+    @if(!is_null($latitude) && !is_null($longitude))
 
         @push('scripts')
             <script >

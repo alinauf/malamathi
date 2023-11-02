@@ -81,14 +81,20 @@
                Back
               </a>
           </dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 justify-end gap-x-6">
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 text-left md:text-right gap-x-6">
               
               
               <button wire:click="validateForm" type="button"
-                      class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-blue-400 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                      class="ml-3 inline-flex py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-blue-400 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                   Submit Form
               </button>
-          </dd>
+              <br>
+              <div class="block pt-1 text-left w-auto float-right">
+                <x-form-errors :messages="$errors" />
+              </div>
+
+            </dd>
+
         </div>
 
       </dl>
