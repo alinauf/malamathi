@@ -10,53 +10,60 @@
                     <div class="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
                         <dt>
 
-                            <p class="truncate text-sm font-medium text-gray-500">Cases Count</p>
+                            <p class="truncate text-sm font-normal text-gray-700">Cases Count</p>
                         </dt>
                         <dd class="flex items-baseline pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900">{{$stats['cases_count']}}</p>
-                            <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
-                                <div class="text-sm">
-                                    <a href="{{url('case-report')}}"
-                                       class="font-medium text-blue-600 hover:text-blue-900">View all<span
-                                                class="sr-only"> Case Count</span></a>
+                            <p class="text-4xl font-bold text-gray-900">{{$stats['cases_count']}}</p>
+                            <a href="{{url('case-report')}}">
+                            <div class="absolute inset-x-0 bottom-0 bg-blue-100 px-4 py-4 sm:px-6 hover:bg-blue-700 active:bg-blue-600 hover:text-white transition text-right">
+                                <div class="pr-1">
+                                    Browse Cases
+                                    <span class="sr-only"> Case Count</span>
                                 </div>
                             </div>
+                            </a>
                         </dd>
                     </div>
 
                     <div class="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
                         <dt>
-
-                            <p class="truncate text-sm font-medium text-gray-500">Ecosystems</p>
+                        <p class="truncate text-sm font-normal text-gray-700">Ecosystems</p>
                         </dt>
                         <dd class="flex items-baseline pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900">{{$stats['ecosystems']}}</p>
-                            <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
-                                <div class="text-sm">
-                                    <a href="{{url('ecosystem')}}"
-                                       class="font-medium text-blue-600 hover:text-blue-900">View all<span
-                                                class="sr-only"> Ecosystems Registered</span></a>
+                            <p class="text-4xl font-bold text-gray-900">{{$stats['ecosystems']}}</p>
+                            <a href="{{url('ecosystem')}}">
+                                <div class="absolute inset-x-0 bottom-0 bg-blue-100 px-4 py-4 sm:px-6 hover:bg-blue-700 active:bg-blue-600 hover:text-white transition text-right">
+                                <div class="pr-1">
+                                    Browse Ecosystems
+                                    <span class="sr-only"> Ecosystems Count</span>
                                 </div>
                             </div>
+                            </a>
                         </dd>
                     </div>
 
                     <div class="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
                         <dt>
-
-                            <p class="truncate text-sm font-medium text-gray-500">Islands</p>
+                        <p class="truncate text-sm font-normal text-gray-700">Islands</p>
                         </dt>
                         <dd class="flex items-baseline pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900">{{$stats['islands']}}</p>
-                            <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
-                                <div class="text-sm">
-                                    <a href="{{url('island')}}"
-                                       class="font-medium text-blue-600 hover:text-blue-900">View all<span
-                                                class="sr-only"> Total Islands stats</span></a>
+                            <p class="text-4xl font-bold text-gray-900">
+                                {{$stats['islands']}}
+                                <a href="{{ url('atoll') }}">  
+                                <small class="text-sm text-gray-500">from {{$stats['islands']}} atolls</small>
+                                </a>
+                            </p>
+                            <a href="{{url('island')}}">
+                            <div class="absolute inset-x-0 bottom-0 bg-blue-100 px-4 py-4 sm:px-6 hover:bg-blue-700 active:bg-blue-600 hover:text-white transition text-right">
+                                <div class="pr-1">
+                                    Browse Islands
+                                    <span class="sr-only"> Islands Count</span>
                                 </div>
                             </div>
+                            </a>
                         </dd>
                     </div>
+
                 </dl>
             </div>
 
@@ -66,13 +73,13 @@
 
                 <dl class="mt-12 grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-3 shadow-md">
                     
-                    <span class="text-2xl bg-blue-100 p-4 md:rounded-l-lg font-serif">
-                        <a href="{{ route('case-report.index') }}" class="hover:text-gray-800">
+                    <span class="text-2xl bg-blue-700 text-white p-4 md:rounded-l-lg font-serif">
+                        <a href="{{ route('case-report.index') }}" class="hover:text-gray-100 ">
                             Incoming <b>Cases</b>
                         </a>
                     </span>
                     <table class="bg-white table col-span-2 md:rounded-r-lg overflow-clip">
-                        <thead class="text-left bg-gray-700 text-white">
+                        <thead class="text-left bg-blue-800 text-white">
                           <tr>
                             <th class="p-4">Submitted</th>
                             <th class="p-4">Title</th>

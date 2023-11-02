@@ -16,6 +16,14 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('case-report.index')" :active="request()->routeIs('case-report.index')">
+                        {{ __('Cases') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('ecosystem.index')" :active="request()->routeIs('ecosystem.index')">
+                        {{ __('Ecosystems') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('atoll.index')" :active="request()->routeIs('atoll.index')">
                         {{ __('Atolls') }}
                     </x-nav-link>
@@ -35,14 +43,6 @@
 
                     <x-nav-link :href="route('plot.index')" :active="request()->routeIs('plot.index')">
                         {{ __('Plots') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('ecosystem.index')" :active="request()->routeIs('ecosystem.index')">
-                        {{ __('Ecosystems') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('case-report.index')" :active="request()->routeIs('case-report.index')">
-                        {{ __('Cases') }}
                     </x-nav-link>
 
                 </div>
@@ -108,6 +108,14 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
+            <x-responsive-nav-link :href="route('case-report.index')" :active="request()->routeIs('case-report.index')">
+                {{ __('Cases') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('ecosystem.index')" :active="request()->routeIs('ecosystem.index')">
+                {{ __('Ecosystems') }}
+            </x-responsive-nav-link>
+
             <x-responsive-nav-link :href="route('atoll.index')" :active="request()->routeIs('atoll.index')">
                 {{ __('Atolls') }}
             </x-responsive-nav-link>
@@ -121,7 +129,6 @@
                 {{ __('Population Entries') }}
             </x-responsive-nav-link>
 
-
             <x-responsive-nav-link :href="route('zone.index')" :active="request()->routeIs('zone.index')">
                 {{ __('Zones') }}
             </x-responsive-nav-link>
@@ -130,13 +137,6 @@
                 {{ __('Plots') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('ecosystem.index')" :active="request()->routeIs('ecosystem.index')">
-                {{ __('Ecosystems') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('case-report.index')" :active="request()->routeIs('case-report.index')">
-                {{ __('Cases') }}
-            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
