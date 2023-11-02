@@ -197,6 +197,8 @@ longitude:@entangle('longitude').live,
                     @enderror
                 </div>
 
+                <div class="sm:col-span-3">
+                </div>
 
                 <div class="sm:col-span-3">
                     <label for="cover-photo"
@@ -209,7 +211,7 @@ longitude:@entangle('longitude').live,
                         <input type="text" name="longitude" wire:model="longitude"> --}}
                         </label>
                     <div class="mt-2 sm:col-span-2 sm:mt-0">
-                        <div id="map" style="height: 20rem" class="rounded-lg" wire:ignore></div>
+                        <div id="map" style="height: 15rem" class="rounded-lg" wire:ignore></div>
                     </div>
                 </div>
 

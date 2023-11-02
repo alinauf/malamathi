@@ -42,6 +42,10 @@
                                 </th>
 
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 ">
+                                    Status
+                                </th>
+
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 ">
                                     Submitted On
                                 </th>
                                 
@@ -68,6 +72,12 @@
                                         <a href="{{url("island/".$caseReport["island_id"])}}">
                                             {{$caseReport->island->name}}
                                         </a>
+                                    </td>
+
+
+                                    <td class=" px-3 py-4 text-sm text-gray-500 text-ellipsis overflow-hidden
+                                        {{$caseReport->is_verified ? "text-green-700" : "text-red-700"}}">
+                                            {{$caseReport->is_verified ? "Verified" : "Not Verified"}}
                                     </td>
 
                                     <td class=" px-3 py-4 text-sm text-gray-500 text-ellipsis overflow-hidden">

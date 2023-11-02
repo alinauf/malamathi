@@ -31,6 +31,12 @@ class CaseReportSL extends SL
             ->paginate($paginateCount);
     }
 
+    //get recent cases
+    public static function getRecentCases($count = 5)
+    {
+        return CaseReport::orderBy('id', 'desc')->take($count)->get();
+    }
+
 
     public function store($data): array
     {
@@ -107,7 +113,7 @@ class CaseReportSL extends SL
             $caseReport->latitude = $data['latitude'] ?? $caseReport->latitude;
             $caseReport->longitude = $data['longitude'] ?? $caseReport->longitude;
 
-            $caseReport->is_verified = false;
+            $caseReport->is_verified = $caseReport->is_verified;
 
             $caseReportSave = $caseReport->save();
         } catch (\Exception $e) {

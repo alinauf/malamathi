@@ -3,6 +3,9 @@
     <div class="flex flex-col md:flex-row py-5 my-5 text-left max-w gap-6">
         <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded min-h-[80vh]">
                 <h1 class="text-2xl my-8 tracking-tight font-bold font-serif text-gray-dark text-left text-blue-800">Preserving Natural Beauty of Maldives, Together</h1>
+                <p class="my-12 text-lg leading-8 text-gray-600">
+                    Transparency of data involving natural resources aids in conservation efforts and better management. The objective of Malamathi is to provide easy access to data and information on natural resources of Maldives.
+                </p>
         </div>
         <div class="md:w-3/4 px-6 pb-6 rounded">
             <p class="lead text-justify">

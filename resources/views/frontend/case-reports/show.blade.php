@@ -1,36 +1,36 @@
 <x-frontend-layout>
-<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 min-h-screen">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 min-h-screen">
 
-    <div class="flex flex-col md:flex-row py-5 my-5 text-left max-w gap-6">
-        <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded min-h-[80vh]">
-                <h1 class="text-xl my-4 font-serif text-gray-dark text-left pb-0 pt-3">
-                    <small>Case:</small><br>
-                    <b>{{  $caseReport->title  }}</b>
-                    <br>
-                 </h1>
+        <div class="flex flex-col md:flex-row py-5 my-5 text-left max-w gap-6">
+            <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded min-h-[80vh]">
+                <h1 class="text-2xl my-8 tracking-tight font-bold font-serif text-gray-dark text-left text-blue-800">
+                   {{ $caseReport->title }}
+                </h1>
 
-                <p class="text-lg min-h-max">
+                <p class="text-md mt-12 min-h-max">
 
                     @isset($caseReport->ecosystem)
-                    <br>
-                    Ecosystem: <b>{{  isset($caseReport->ecosystem) ? $caseReport->ecosystem->name : '-'  }}</b>
+                    <small class="block mt-2">Ecosystem:</small> 
+                        <b>{{  isset($caseReport->ecosystem) ? $caseReport->ecosystem->name : '-'  }}</b>
                     @endisset
 
                     <br>
-                    Island: <b>{{  isset($caseReport->island) ? $caseReport->island->name : '-'  }}</b>
+                    <small class="block mt-2">Island:</small> 
+                        {{  isset($caseReport->island) ? $caseReport->island->name : '-'  }}
                     <br>
-                    Atoll: <b>{{  isset($caseReport->atoll) ? $caseReport->atoll->name : '-'  }}</b>
-
+                    <small class="block mt-2">Atoll:</small> 
+                        {{  isset($caseReport->atoll) ? $caseReport->atoll->name : '-'  }}
                 </p>
 
 
 
 
+            <small class="block mt-10">Location:</small> 
             @php
             $latitude = $caseReport->latitude;
             $longitude = $caseReport->longitude;
             @endphp
-            @if(isset($latitude) && isset($longitude))
+            @if(!is_null($latitude) && !is_null($longitude))
 
                 <div class="mt-6">
                         <div id="map" class="min-h-[40vh] md:min-h-[65vh] rounded"></div>
@@ -41,9 +41,10 @@
                   display:none!important;
                 }
             </style>
+            @push('scripts')                
             <script >
-                const latitude = @json($latitude);
-                const longitude = @json($longitude);
+                const latitude = {{ $latitude }};
+                const longitude = {{ $longitude }};
                 const map = L.map('map').setView([latitude, longitude], 14);
 
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -52,8 +53,9 @@
                 }).addTo(map);
                 const marker = L.marker([latitude, longitude]).addTo(map);
             </script>
+            @endpush
             @else
-            <p class="text-gray-500">No location available</p>
+                Unmarkedxsxs
             @endif
 
         </div>
@@ -64,20 +66,27 @@
                 $longitude = $caseReport->longitude;
             @endphp
 
-
-            <p class="text-base font-semibold leading-7 text-green-600">{{$caseReport->island->code .'. '. $caseReport->island->name}}</p>
-            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{
+            <p class="p-1 text-base font-semibold leading-7 text-green-600">{{$caseReport->island->code .'. '. $caseReport->island->name}}</p>
+            <h1 class="p-1 mt-1 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl font-serif">{{
             $caseReport->title
             }}</h1>
-            <p class="mt-6 text-xl leading-8">
-                {{ $caseReport->statement}}
-            </p>
 
-            <ul wire:ignore role="list" class="divide-y divide-gray-100 b_gallery flex">
+            <div class="flex items-center text-sm mt-6 ">
+                <a href="#"
+                class="relative px-3 py-1.5 font-medium text-gray-800 bg-gray-100 rounded">
+                    Submitted by: <b>{{$caseReport->submitted_by ?? 'Anonymous'}}</b>
+                <time datetime="{{ $caseReport->created_at }}" class="text-gray-800 pl-8">
+                    <span class="absolute inset-0"></span>
+                    Date: <b>{{ $caseReport->created_at->format('d M, Y')}}</b>
+                </time>
+                </a>
+            </div>
+
+            <ul wire:ignore role="list" class="divide-y divide-gray-100 b_gallery flex mt-8">
                 @if($caseReport->getMedia('case-report-images') != null && count($caseReport->getMedia('case-report-images')))
                     @foreach($caseReport->getMedia('case-report-images') as $caseReportMedia)
                         <a href="{{ url($caseReportMedia->getUrl()) }}" class="flex m-2">
-                            <img class="aspect-video rounded bg-gray-50 object-cover hover:scale-110 transition-all duration-300"
+                            <img class="aspect-video rounded bg-gray-50 object-cover rounded-full hover:scale-110 transition-all duration-300"
                                     src="{{ url($caseReportMedia->getUrl()) }}"
                                     alt=""
                                     style="width:200px; height:200px; object-fit: cover; object-position: center; "
@@ -86,6 +95,10 @@
                     @endforeach
                 @endif
             </ul>
+
+            <p class="mt-6 text-lg px-2 leading-8">
+                {{ $caseReport->statement}}
+            </p>
 
 
 
