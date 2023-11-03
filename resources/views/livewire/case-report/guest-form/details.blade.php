@@ -1,13 +1,13 @@
 
             <div class="space-y-12 sm:space-y-16">
-    
+
                 <div>
 
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Documentation</h2>
                     <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
                         Please provide any photos or videos related to this case.
                     </p>
-    
+
                     <div class="mt-5 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
 
                         <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
@@ -16,7 +16,9 @@
                                 Photos or Video
                                 </label>
                             <div class="mt-2 sm:col-span-2 sm:mt-0">
-                                <x-media-library-attachment multiple name="uploads" />
+
+                                <x-media-library-attachment rules="mimes:jpeg,png,jpg,mp4" multiple name="uploads"/>
+
                             </div>
                         </div>
 
@@ -27,9 +29,9 @@
                     <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
                         You can skip this section if you'd like to be anonymous.
                     </p>
-    
+
                     <div class="mt-5 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
-    
+
                         {{-- Submitted By--}}
                         <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                             <label for="submitted_by" class="block text-sm font-medium text-gray-700"
@@ -45,14 +47,14 @@
                                        shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
                                        border-gray-300 rounded-md">
                             </div>
-    
+
                             @error('submitted_by')
                             <p class="mt-2 text-sm text-red-600">{{$message}}</p>
                             @enderror
                         </div>
-    
-    
-    
+
+
+
                         {{-- Phone--}}
                         <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                             <label for="phone" class="block text-sm font-medium text-gray-700"
@@ -68,13 +70,13 @@
                                        shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
                                        border-gray-300 rounded-md">
                             </div>
-    
+
                             @error('phone')
                             <p class="mt-2 text-sm text-red-600">{{$message}}</p>
                             @enderror
                         </div>
-    
-    
+
+
                         {{-- Email--}}
                         <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                             <label for="email" class="block text-sm font-medium text-gray-700"
@@ -90,7 +92,7 @@
                                        shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
                                        border-gray-300 rounded-md">
                             </div>
-    
+
                             @error('email')
                             <p class="mt-2 text-sm text-red-600">{{$message}}</p>
                             @enderror
@@ -98,7 +100,7 @@
 
                         <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                             <dt class="text-sm font-medium leading-6 text-gray-900">
-                              <a href="#" 
+                              <a href="#"
                                     wire:click="showForm(1)"
                                     class="mt-8 text-md font-semibold leading-6 text-gray-900 step-link">
                                  Back
@@ -113,12 +115,11 @@
                                 </div>
                             </dd>
                           </div>
-    
-    
+
+
                     </div>
                 </div>
-    
-                
-    
+
+
+
             </div>
-    
