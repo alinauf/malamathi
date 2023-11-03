@@ -12,6 +12,8 @@ class Usage extends Component
     public $description;
     public $purpose;
 
+    public $plot_value;
+
     public $formValidationStatus;
 
     protected $rules = [
@@ -23,6 +25,8 @@ class Usage extends Component
         [
             'owner_name.required' => 'Enter the owner name',
             'purpose.required' => 'Enter the purpose',
+            'plot_value' => 'nullable|numeric|between:0,99999999.9999'
+
         ];
 
     public function mount($plot)

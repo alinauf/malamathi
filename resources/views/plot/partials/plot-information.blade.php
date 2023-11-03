@@ -114,6 +114,15 @@
                                             <p class="">Details: {{$latestPlotOwnerByDate->description}}</p>
                                         </div>
                                     @endif
+
+                                    @if(isset($latestPlotOwnerByDate->plot_value))
+                                        <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+                                            <p class="">Plot Value:
+                                                MVR {{ number_format($latestPlotOwnerByDate->plot_value, 2) }}</p>
+
+
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="flex flex-none items-center gap-x-4">
                                     <form action="{{ url("/plot/usage/$plotUsage->id") }}" method="post">
@@ -148,6 +157,15 @@
                                     @if(isset($plotUsage->description))
                                         <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
                                             <p class="">Details: {{$plotUsage->description}}</p>
+                                        </div>
+                                    @endif
+
+                                    @if(isset($plotUsage->plot_value))
+                                        <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+
+                                            <p class="">Plot Value:
+                                                MVR {{ number_format($plotUsage->plot_value, 2) }}</p>
+
                                         </div>
                                     @endif
                                 </div>

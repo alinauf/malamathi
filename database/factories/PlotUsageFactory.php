@@ -25,6 +25,8 @@ class PlotUsageFactory extends Factory
             'owner_name' => $this->faker->name,
             'purpose' => $this->faker->randomElement(['Residential', 'Commercial', 'Industrial']),
             'description' => $this->faker->text,
+            'plot_value' => $this->faker->numberBetween(0, 99999.9999),
+
         ];
     }
 

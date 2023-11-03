@@ -67,6 +67,26 @@ formValidationStatus:@entangle('formValidationStatus').live,
                     @enderror
                 </div>
 
+                <div class="sm:col-span-3">
+                    <label for="plot_value" class="block text-sm font-medium text-gray-700"
+                    >
+                        Plot Value
+                    </label>
+                    <div class="mt-1">
+                        <input type="number" name="plot_value"
+                               wire:model.live="plot_value"
+                               id="plot_value"
+                               class="
+                            @error('plot_value') border border-red-500 @enderror
+                                   shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
+                                   border-gray-300 rounded-md">
+                    </div>
+
+                    @error('plot_value')
+                    <p class="mt-2 text-sm text-red-600">{{$message}}</p>
+                    @enderror
+                </div>
+
                 {{-- Description--}}
                 <div class="sm:col-span-6">
                     <label for="description" class="block text-sm font-medium text-gray-700"
@@ -81,6 +101,7 @@ formValidationStatus:@entangle('formValidationStatus').live,
                         shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm
                         border-gray-300 rounded-md">
                 </textarea>
+
 
                     </div>
 
@@ -97,9 +118,9 @@ formValidationStatus:@entangle('formValidationStatus').live,
         <div class="mt-8 flex justify-end">
             <button wire:click="validateForm" type="button"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-blue-400 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    <svg width="24" height="24" viewBox="0 0 24 24" class="inline pr-1" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#fff" d="m9 20.42l-6.21-6.21l2.83-2.83L9 14.77l9.88-9.89l2.83 2.83L9 20.42Z"/>
-                    </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" class="inline pr-1" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#fff" d="m9 20.42l-6.21-6.21l2.83-2.83L9 14.77l9.88-9.89l2.83 2.83L9 20.42Z"/>
+                </svg>
                 Save
             </button>
         </div>

@@ -17,6 +17,7 @@ class PlotUsage extends Model
         'owner_name',
         'purpose',
         'description',
+        'plot_value',
     ];
 
     public function plot()

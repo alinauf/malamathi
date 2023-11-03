@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('owner_name');
             $table->string('purpose');
             $table->text('description')->nullable();
+            $table->decimal('plot_value', 12, 4)->nullable(); // e.g., 999999999.9999
             $table->timestamps();
             $table->softDeletes();
 

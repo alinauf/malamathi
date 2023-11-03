@@ -33,6 +33,7 @@ class PlotUsageSL extends SL
                 'owner_name' => $data['owner_name'],
                 'purpose' => $data['purpose'],
                 'description' => $data['description'] ?? null,
+                'plot_value' => $data['plot_value'] ?? null,
             ]);
 
 
@@ -70,6 +71,8 @@ class PlotUsageSL extends SL
             $plotUsage->owner_name = $data['owner_name'] ?? $plotUsage->owner_name;
             $plotUsage->purpose = $data['purpose'] ?? $plotUsage->purpose;
             $plotUsage->description = $data['description'] ?? $plotUsage->description;
+            $plotUsage->plot_value = $data['plot_value'] ?? $plotUsage->plot_value;
+
             $plotUsageSave = $plotUsage->save();
 
         } catch (\Exception $e) {
