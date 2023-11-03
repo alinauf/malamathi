@@ -113,9 +113,15 @@ class CaseReportSL extends SL
             $caseReport->latitude = $data['latitude'] ?? $caseReport->latitude;
             $caseReport->longitude = $data['longitude'] ?? $caseReport->longitude;
 
-            $caseReport->is_verified = $caseReport->is_verified;
+            if (isset($data['uploads'])) {
+                $caseReport
+                    ->syncFromMediaLibraryRequest($data['uploads'])
+                    ->toMediaCollection('case-report-images');
+            }
 
             $caseReportSave = $caseReport->save();
+
+
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;

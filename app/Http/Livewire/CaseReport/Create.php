@@ -38,11 +38,8 @@ class Create extends Component
     public $form2;
     public $form3;
 
-    public $uploads;
+    public $uploads=[];
     public $uploadedItems;
-
-
-    public $mediaComponentNames = ['uploads'];
 
     public $captcha = null;
     public $captchaPassed = false;
@@ -108,7 +105,7 @@ class Create extends Component
     public function updatedEcosystemId()
     {
         $this->ecosystem = Ecosystem::find($this->ecosystem_id);
-        
+
         $this->island = Island::find($this->ecosystem->island_id);
         $this->island_id = $this->island->id;
 

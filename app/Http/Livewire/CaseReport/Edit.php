@@ -5,9 +5,11 @@ namespace App\Http\Livewire\CaseReport;
 use App\Models\Ecosystem;
 use App\Models\Island;
 use Livewire\Component;
+use  Spatie\MediaLibraryPro\Livewire\Concerns\WithMedia;
 
 class Edit extends Component
 {
+    use WithMedia;
 
     public $caseReport;
 
@@ -31,6 +33,8 @@ class Edit extends Component
 
     public $formValidationStatus;
 
+    public $uploads = [];
+
     protected $rules = [
         'atoll_id' => 'required',
         'island_id' => 'required',
@@ -44,6 +48,7 @@ class Edit extends Component
         'submitted_by' => 'nullable|string',
         'latitude' => ['nullable', 'regex:/^[-]?((([0-8]?[0-9])\.(\d+))|(90(\.0+)?))$/'],
         'longitude' => ['nullable', 'regex:/^[-]?((([0-9]?[0-9]|1[0-7][0-9])\.(\d+))|(180(\.0+)?))$/'],
+
 
     ];
 
@@ -75,7 +80,7 @@ class Edit extends Component
         $this->phone = $caseReport->phone;
         $this->email = $caseReport->email;
 
-        $this->latitude = $caseReport->latitude ??  3.2028;
+        $this->latitude = $caseReport->latitude ?? 3.2028;
         $this->longitude = $caseReport->longitude ?? 73.2207;
     }
 

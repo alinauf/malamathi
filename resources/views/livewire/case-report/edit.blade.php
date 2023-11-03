@@ -198,33 +198,49 @@ longitude:@entangle('longitude').live,
                     @enderror
                 </div>
 
+                <div class="sm:col-span-6">
+                    <label for="email" class="block text-sm font-medium text-gray-700"
+                    >
+                        Images and Videos
+                    </label>
+
+                    <livewire:media-library
+                            rules="mimes:jpeg,png,jpg,mp4"
+                            collection="case-report-images"
+                            :model="$caseReport"
+                            wire:model="uploads" />
+
+                </div>
+
                 <div class="sm:col-span-3">
                     <label for="cover-photo"
                            class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
                         Location
 
                         <p class="my-4 text-xs font-mono text-gray-400">
-                             LAT: {{ $latitude }}<br> LON: {{ $longitude }}</p>
-                             <input type="hidden" name="latitude" value="{{ $latitude }}">
-                             <input type="hidden" name="longitude"value="{{ $longitude }}">
-                        </label>
+                            LAT: {{ $latitude }}<br> LON: {{ $longitude }}</p>
+                        <input type="hidden" name="latitude" value="{{ $latitude }}">
+                        <input type="hidden" name="longitude" value="{{ $longitude }}">
+                    </label>
                     <div class="mt-2 sm:col-span-2 sm:mt-0">
                         <div id="map" style="height: 15rem" class="rounded-lg" wire:ignore></div>
                     </div>
                 </div>
 
                 <div class="sm:col-span-3">
-                    
+
                     <div class="block pt-1 text-left w-auto float-right">
                         <button wire:click="validateForm" type="button"
-                    class="mt-6 inline-flex justify-center py-2 mb-5 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-blue-400 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                <svg width="24" height="24" viewBox="0 0 24 24" class="pr-1" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill="#fff" d="m14.72 8.79l-4.29 4.3l-1.65-1.65a1 1 0 1 0-1.41 1.41l2.35 2.36a1 1 0 0 0 .71.29a1 1 0 0 0 .7-.29l5-5a1 1 0 0 0 0-1.42a1 1 0 0 0-1.41 0ZM12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8a8 8 0 0 1-8 8Z"/>
-                                </svg>
+                                class="mt-6 inline-flex justify-center py-2 mb-5 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-blue-400 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <svg width="24" height="24" viewBox="0 0 24 24" class="pr-1"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#fff"
+                                      d="m14.72 8.79l-4.29 4.3l-1.65-1.65a1 1 0 1 0-1.41 1.41l2.35 2.36a1 1 0 0 0 .71.29a1 1 0 0 0 .7-.29l5-5a1 1 0 0 0 0-1.42a1 1 0 0 0-1.41 0ZM12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8a8 8 0 0 1-8 8Z"/>
+                            </svg>
                             Update
                         </button>
                     </div>
-                    <x-form-errors :messages="$errors" />
+                    <x-form-errors :messages="$errors"/>
 
                 </div>
 
@@ -234,7 +250,7 @@ longitude:@entangle('longitude').live,
 
         {{--    Validate the form. If Validation passes show modal to confirm--}}
         <div class="mt-8 flex justify-end">
-            
+
         </div>
 
 
@@ -244,33 +260,35 @@ longitude:@entangle('longitude').live,
 
 
     @push('scripts')
-    <script>
-        latitude = {{ $latitude }};
-        longitude = {{ $longitude }};
-        const map = L.map('map').setView([latitude, longitude], 12);
+        <script>
+            latitude = {{ $latitude }};
+            longitude = {{ $longitude }};
+            const map = L.map('map').setView([latitude, longitude], 12);
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
 
-        let marker = new L.Marker([latitude, longitude]).addTo(map);
+            let marker = new L.Marker([latitude, longitude]).addTo(map);
 
-        map.on('click', function(e) {
-            if(marker) {
-                map.removeLayer(marker);
-            }
-            marker = new L.Marker(e.latlng).addTo(map);
-            @this.set('latitude', e.latlng.lat);
-            @this.set('longitude', e.latlng.lng);
-        });
+            map.on('click', function (e) {
+                if (marker) {
+                    map.removeLayer(marker);
+                }
+                marker = new L.Marker(e.latlng).addTo(map);
+                @this.
+                set('latitude', e.latlng.lat);
+                @this.
+                set('longitude', e.latlng.lng);
+            });
 
-    </script>
+        </script>
     @endpush
 
     <style>
-        .leaflet-control-attribution{
-        display:none!important;
+        .leaflet-control-attribution {
+            display: none !important;
         }
     </style>
 </div>

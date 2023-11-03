@@ -17,7 +17,8 @@
                                 </label>
                             <div class="mt-2 sm:col-span-2 sm:mt-0">
 
-                                <x-media-library-attachment rules="mimes:jpeg,png,jpg,mp4" multiple name="uploads"/>
+
+                                 <livewire:media-library wire:model="uploads" rules="mimes:jpeg,png,jpg,mp4" multiple />
 
                             </div>
                         </div>

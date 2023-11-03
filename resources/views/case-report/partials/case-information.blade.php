@@ -173,18 +173,35 @@
 
             <div class="sm:col-span-2">
                 <dt class="text-sm font-medium text-gray-500">
-                    Case Report Images
+                    Case Report Images and videos
                 </dt>
                 <ul wire:ignore role="list" class="divide-y divide-gray-100 b_gallery flex">
                     @if($caseReport->getMedia('case-report-images') != null && count($caseReport->getMedia('case-report-images')))
                         @foreach($caseReport->getMedia('case-report-images') as $caseReportMedia)
-                            <a href="{{ url($caseReportMedia->getUrl()) }}" class="flex m-2">
-                                <img class="aspect-video rounded-xl bg-gray-50 object-cover  transition-all duration-300"
-                                        src="{{ url($caseReportMedia->getUrl()) }}"
-                                        alt=""
-                                        style="width:100px; height:100px; object-fit: cover; object-position: center; "
-                                        />                            
-                            </a>
+                            @if($caseReportMedia->mime_type != 'video/mp4')
+                                <a href="{{ url($caseReportMedia->getUrl()) }}" class="flex m-2">
+                                    <img class="aspect-video rounded-xl bg-gray-50 object-cover  transition-all duration-300"
+                                         src="{{ url($caseReportMedia->getUrl()) }}"
+                                         alt=""
+                                         style="width:100px; height:100px; object-fit: cover; object-position: center; "
+                                    />
+                                </a>
+                            @endif
+                        @endforeach
+                    @endif
+                </ul>
+
+                <ul wire:ignore role="list" class="divide-y divide-gray-100 grid grid-cols-1 gap-4 ">
+                    @if($caseReport->getMedia('case-report-images') != null && count($caseReport->getMedia('case-report-images')))
+                        @foreach($caseReport->getMedia('case-report-images') as $caseReportMedia)
+                            @if($caseReportMedia->mime_type == 'video/mp4')
+                                <video class="aspect-video w-full  bg-gray-50 object-cover"
+                                       src="{{ url($caseReportMedia->getUrl()) }}"
+                                       alt=""
+                                       controls
+                                       style="height: 500px; object-fit: cover; object-position: center; "
+                                ></video>
+                            @endif
                         @endforeach
                     @endif
                 </ul>
@@ -360,9 +377,6 @@
             </div>
         </div>
     @endif
-
-
-
 
 
 </div>
