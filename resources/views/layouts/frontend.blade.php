@@ -7,11 +7,14 @@
 
     <title>{{ config('app.name', 'Malamathi') }}</title>
 
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Lora:400,500,600,700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.bunny.net/css?family=Ubuntu:300,700&display=swap" rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
 
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -25,7 +28,6 @@
 
 
     @stack('styles')
-
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
