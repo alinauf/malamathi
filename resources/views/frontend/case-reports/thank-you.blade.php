@@ -1,5 +1,5 @@
 <x-frontend-layout>
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 min-h-[80vh]">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 min-h-auto md:min-h-[80vh]">
 
         <div class="md:w-full px-6 pb-6 rounded">
             <div class="bg-white px-6 py-24 sm:py-32 lg:px-8">

@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 min-h-screen">
 
         <div class="flex flex-col md:flex-row py-5 my-5 text-left max-w gap-6">
-            <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded min-h-[80vh]">
+            <div class="md:w-1/4 px-6 pb-6 bg-blue-50 rounded min-h-auto md:min-h-[80vh]">
                 <h1 class="text-2xl my-8 tracking-tight font-bold font-serif text-gray-dark text-left text-blue-800">
                     Case Reports
                 </h1>
