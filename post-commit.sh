@@ -7,7 +7,7 @@
 composer install --optimize-autoloader
 
 # Change the owner to "dev"
-sudo chown -R dev:dev .
+chown -R dev:dev .
 
 # Directories should have 755 permissions
 find . -type d -exec chmod 755 {} \;
